@@ -1,21 +1,20 @@
 function substring(words) {
-    const result = [];
-  
-    for (let i = 0; i < words.length; i++) {
-      const currentWord = words[i];//mass
-      
-      for (let j = 0; j < words.length; j++) {
+  const result = [];
 
-        if (i !== j && words[j].includes(currentWord)) {
-          result.push(currentWord);
-          break;
-        }
+  for (let i = 0; i < words.length; i++) {
+    const currentWord = words[i]; //mass
+
+    for (let j = 0; j < words.length; j++) {
+      if (i !== j && words[j].includes(currentWord)) {
+        result.push(currentWord);
+        break;
       }
     }
-  
-    return result;
   }
 
+  return result;
+}
+
 //   words=[]
-words = ["mass","as","hero","superhero"]
-console.log(substring(words))
+words = ["mass", "as", "hero", "superhero", "super"];
+console.log(substring(words));
