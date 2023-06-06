@@ -1,0 +1,16 @@
+{
+  "name": "day2",
+  "version": "1.0.0",
+  "description": "<!-- let and const: Block-scoped variables with let and const.\r Arrow Functions: Concise function syntax using => notation.\r Classes: Class syntax for object-oriented programming.\r Modules: Standardized module system for organizing and reusing code.\r Template Literals: Enhanced string literals with embedded expressions using backticks.\r Destructuring Assignment: Extracting values from arrays or objects into variables.\r Default Parameters: Default values for function parameters.\r Rest Parameters: Gathering remaining arguments into an array.\r Spread Syntax: Spreading elements of an iterable (e.g., array) into multiple elements.\r Enhanced Object Literals: Shorthand syntax for defining object properties.\r Promises: Improved handling of asynchronous operations.\r Symbol: A new primitive type for unique identifiers.\r Iterators: Custom iteration using iterable objects and Symbol.iterator.\r Generators: Special kind of function that can pause and resume.\r Map and Set: New built-in data structures for key-value mappings and unique values.\r WeakMap and WeakSet: Collections that allow weak references to objects.\r Proxy: Customized behavior for fundamental operations on objects.\r Reflect: API for working with JavaScript objects and functions.\r Array.from(): Convert array-like or iterable objects to arrays.\r Array.of(): Create an array from a variable number of arguments.\r Array Methods: New array methods like find(), findIndex(), includes(), etc. -->",
+  "main": "date.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
