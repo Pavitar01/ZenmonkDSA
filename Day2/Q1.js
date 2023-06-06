@@ -1,3 +1,6 @@
+
+
+
 // const matrix = [
 //     [1, 3, 5, 7],
 //     [10, 11, 16, 20],
@@ -36,7 +39,7 @@ const matrix = [
   function isFound() {
     const rows = matrix.length;
     const cols = matrix[0].length; // here we are having m*n matrix so the colum must be same
-    
+
   
     let left = 0;
     let right = rows * cols - 1; // we finding the last elemenst that is 11
