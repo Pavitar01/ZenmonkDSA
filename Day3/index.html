@@ -1,0 +1,92 @@
+Certainly! Here's the combined list of important SQL keywords with their definitions and examples, formatted with appropriate colors:
+
+1. <span style="color:blue">SELECT:</span> Retrieves data from one or more database tables.
+   Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> employees;
+
+2. <span style="color:blue">INSERT:</span> Inserts new records into a database table.
+   Example: <span style="color:green">INSERT INTO</span> customers (name, email) <span style="color:green">VALUES</span> ('John Doe', 'john@example.com');
+
+3. <span style="color:blue">UPDATE:</span> Modifies existing records in a database table.
+   Example: <span style="color:green">UPDATE</span> products <span style="color:green">SET</span> price = 10.99 <span style="color:green">WHERE</span> id = 1;
+
+4. <span style="color:blue">DELETE:</span> Removes records from a database table.
+   Example: <span style="color:green">DELETE FROM</span> orders <span style="color:green">WHERE</span> status = 'cancelled';
+
+5. <span style="color:blue">FROM:</span> Specifies the table(s) from which to retrieve data.
+   Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> customers;
+
+6. <span style="color:blue">WHERE:</span> Filters records based on specified conditions.
+   Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> products <span style="color:green">WHERE</span> price > 100;
+
+7. <span style="color:blue">JOIN:</span> Combines records from two or more tables based on a related column between them.
+   Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> orders <span style="color:green">JOIN</span> customers <span style="color:green">ON</span> orders.customer_id = customers.id;
+
+8. <span style="color:blue">GROUP BY:</span> Groups rows based on one or more columns.
+   Example: <span style="color:green">SELECT</span> country, <span style="color:green">COUNT(*)</span> <span style="color:green">FROM</span> customers <span style="color:green">GROUP BY</span> country;
+
+9. <span style="color:blue">HAVING:</span> Filters groups based on specified conditions.
+   Example: <span style="color:green">SELECT</span> country, <span style="color:green">COUNT(*)</span> <span style="color:green">FROM</span> customers <span style="color:green">GROUP BY</span> country <span style="color:green">HAVING</span> COUNT(*) > 10;
+
+10. <span style="color:blue">ORDER BY:</span> Sorts the result set based on one or more columns.
+    Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> products <span style="color:green">ORDER BY</span> price <span style="color:green">DESC</span>;
+
+11. <span style="color:blue">DISTINCT:</span> Retrieves unique values from a column.
+    Example: <span style="color:green">SELECT DISTINCT</span> country <span style="color:green">FROM</span> customers;
+
+    Certainly! Here are the remaining SQL keywords with their definitions and examples, formatted with appropriate colors:
+
+    13. <span style="color:blue">AS:</span> Specifies an alias for a column or table.
+        Example: <span style="color:green">SELECT</span> first_name <span style="color:blue">AS</span> fname, last_name <span style="color:blue">AS</span> lname <span style="color:green">FROM</span> employees;
+    
+    14. <span style="color:blue">UNION:</span> Combines the result sets of two or more SELECT statements.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> customers <span style="color:blue">UNION</span> <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> suppliers;
+    
+    15. <span style="color:blue">BETWEEN:</span> Checks if a value is within a specified range.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> orders <span style="color:blue">WHERE</span> order_date <span style="color:blue">BETWEEN</span> '2022-01-01' <span style="color:blue">AND</span> '2022-12-31';
+    
+    16. <span style="color:blue">LIKE:</span> Filters records based on a pattern using wildcard characters.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> customers <span style="color:blue">WHERE</span> email <span style="color:blue">LIKE</span> '%gmail.com';
+    
+    17. <span style="color:blue">IN:</span> Checks if a value matches any value in a list.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> products <span style="color:blue">WHERE</span> category_id <span style="color:blue">IN</span> (1, 2, 3);
+    
+    18. <span style="color:blue">NOT:</span> Negates a condition.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> customers <span style="color:blue">WHERE</span> <span style="color:blue">NOT</span> country = 'USA';
+    
+    19. <span style="color:blue">EXISTS:</span> Checks if a subquery returns any rows.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> orders <span style="color:blue">WHERE</span> <span style="color:blue">EXISTS</span> (SELECT * <span style="color:green">FROM</span> products <span style="color:blue">WHERE</span> orders.product_id = products.id);
+    
+    20. <span style="color:blue">ALL:</span> Compares a value to all values returned by a subquery.
+        Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> products <span style="color:blue">WHERE</span> price > <span style="color:blue">ALL</span> (SELECT price <span style="color:green">FROM</span> products <span style="color:blue">WHERE</span> category = 'Electronics');
+    
+        Certainly! Here are some additional SQL keywords with their definitions and examples, formatted with appropriate colors:
+
+        21. <span style="color:blue">ANY/SOME:</span> Compares a value to any value returned by a subquery.
+            Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> products <span style="color:blue">WHERE</span> price > <span style="color:blue">ANY</span> (SELECT price <span style="color:green">FROM</span> products <span style="color:blue">WHERE</span> category = 'Electronics');
+        
+        22. <span style="color:blue">AVG:</span> Calculates the average value of a column.
+            Example: <span style="color:green">SELECT AVG</span>(price) <span style="color:green">FROM</span> products;
+        
+        23. <span style="color:blue">MAX:</span> Retrieves the maximum value from a column.
+            Example: <span style="color:green">SELECT MAX</span>(price) <span style="color:green">FROM</span> products;
+        
+        24. <span style="color:blue">MIN:</span> Retrieves the minimum value from a column.
+            Example: <span style="color:green">SELECT MIN</span>(price) <span style="color:green">FROM</span> products;
+        
+        25. <span style="color:blue">SUM:</span> Calculates the sum of values in a column.
+            Example: <span style="color:green">SELECT SUM</span>(quantity) <span style="color:green">FROM</span> orders;
+        
+        26. <span style="color:blue">COUNT:</span> Retrieves the number of rows or non-null values in a column.
+            Example: <span style="color:green">SELECT COUNT(*)</span> <span style="color:green">FROM</span> customers;
+        
+        27. <span style="color:blue">NULL:</span> Represents a missing or unknown value.
+            Example: <span style="color:green">SELECT</span> * <span style="color:green">FROM</span> customers <span style="color:blue">WHERE</span> email <span style="color:blue">IS NULL</span>;
+        
+        28. <span style="color:blue">PRIMARY KEY:</span> Defines a column as a unique identifier for a table.
+            Example: <span style="color:green">CREATE TABLE</span> employees (id INT <span style="color:blue">PRIMARY KEY</span>, name VARCHAR(50));
+        
+        29. <span style="color:blue">FOREIGN KEY:</span> Establishes a relationship between two tables based on a column.
+            Example: <span style="color:green">CREATE TABLE</span> orders (id INT, customer_id INT, <span style="color:blue">FOREIGN KEY</span> (customer_id) <span style="color:green">REFERENCES</span> customers(id));
+        
+        These additional SQL keywords cover functionalities such as aggregate functions, NULL values, and database constraints like primary keys and foreign keys.
+        
