@@ -5,7 +5,7 @@ class User {
     this.email = email;
     this.shoppingCart = new ShoppingCart();
     // this.chatBot = new ChatBot();//create an instance of chatbot fo the user
-    this.chatBot = null; 
+    // this.chatBot = null; 
   }
 
   authenticate(username, password, email) {
@@ -15,9 +15,9 @@ class User {
       this.email === email
     );
   }
-  enableChatBot() {
-    this.chatBot = new ChatBot(); // Create an instance of the chatbot for the user
-  }
+//   enableChatBot() {
+//     this.chatBot = new ChatBot(); // Create an instance of the chatbot for the user
+//   }
 }
 
 class LoginSystem {
@@ -113,9 +113,9 @@ showproducts(){
   login(username, password, email) {
     const user = this.findUser(username);
     if (user && user.authenticate(username, password, email)) {
+        console.log("----------------------------------------------")
       console.log(`User '${username}' successfully logged in.`);
       user.shoppingCart.startShopping(username, this.products); // Pass the products as a parameter
-      user.enableChatBot();
     } else {
       console.log("Invalid username, password, or email.");
     }
@@ -145,7 +145,7 @@ class ShoppingCart {
   //items for adding to cart
   addItem(product) {
     this.items.push(product);
-    console.log(`Added ${product.name} to the shopping cart.`);
+    console.log(`User Added ${product.name} to the shopping cart.`);
   }
   //removing items from card using id
   removeItemById(id) {
@@ -173,7 +173,7 @@ class ShoppingCart {
 
   checkout(username) {
     const totalPrice = this.getTotalPrice();
-    console.log(`Total price: ${totalPrice.toFixed(2)}`);
+    console.log(`Total price: ${totalPrice.toFixed(2)}\u20B9`);
     console.log(`Thank you ${username} for shopping with us!`);
     this.items = [];
   }
@@ -203,33 +203,32 @@ class ShoppingCart {
   
 }
 
-//chatbot
-// ChatBot class
+
+
+//  _________________________________________ advance features___________________________________________________________________
+
 class ChatBot {
-  constructor() {
-    this.userQuery = null;
-  }
-
-  handleQuery(query) {
-    this.userQuery = query;
-    console.log("------------------------------------");
-    console.log(`User query: ${this.userQuery}`);
-
-    if (this.userQuery.toLowerCase().includes("problem")) {
-      console.log(
-        "Thank you for contacting us. Your query about the problem will be resolved within a few hours."
-      );
-    } else if (this.userQuery.toLowerCase().includes("product id")) {
-      console.log(
-        "Thank you for your query. To assist you better, please provide the product ID."
-      );
-    } else {
-      console.log(
-        "Thank you for your query. Our support team will get back to you with a response within a few hours."
-      );
+    constructor() {
+      this.userQuery = null;
+    }
+  
+    handleQuery(query) {
+      this.userQuery = query;
+      console.log("-------------------------------")
+      console.log(`User query: ${this.userQuery}`);
+  
+      if (this.userQuery.toLowerCase().includes('problem')) {
+        console.log("Thank you for contacting us. Your query about the problem will be resolved within a few hours.");
+      } else if (this.userQuery.toLowerCase().includes('product id')) {
+        console.log("Thank you for your query. To assist you better, please provide the product ID.");
+      } else {
+        console.log("Thank you for your query. Our support team will get back to you with a response within a few hours.");
+      }
     }
   }
-}
+
+  
+// -----------------------------------------------------------------------------
 
 // Example usage
 
@@ -249,18 +248,7 @@ loginSystem.sortlowtohigh()
 
  loginSystem.login('pavi', 'hello',"pavi@gmail.com");
 
-//  _________________________________________ advance features___________________________________________________________________
-
-
-
-const chatBot = new ChatBot();
-
-//   chat bot is checking the word using includes after thet it generating the response
-//   chatBot.handleQuery("I have a problem");
-//   chatBot.handleQuery("Track product Id is 123");
-//   chatBot.handleQuery("Can i track my parcel");
-
-
-//reviews
-
-// sorting by price
+ const chatBot = new ChatBot();
+ const userQuery = "I have a problem"; // User's query
+ 
+ chatBot.handleQuery(userQuery);
