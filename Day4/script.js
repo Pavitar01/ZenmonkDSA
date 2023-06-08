@@ -228,9 +228,6 @@ class ChatBot {
   }
 
   
-// -----------------------------------------------------------------------------
-
-// Example usage
 
 // Example usage
 
@@ -244,7 +241,8 @@ loginSystem.showproducts();
 //sort by rating
 loginSystem.unlock();
 //sort by low to high price
-loginSystem.sortlowtohigh()
+loginSystem.sortlowtohigh();
+loginSystem.filterProductsByName("shoes");
 
  loginSystem.login('pavi', 'hello',"pavi@gmail.com");
 
