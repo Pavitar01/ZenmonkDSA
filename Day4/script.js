@@ -62,6 +62,17 @@ class LoginSystem {
     console.log("You have unlocked the functionality.");
     this.showAvailableProductsByRating();
   }
+  //show proucts
+
+showproducts(){
+    const products = this.products
+    console.log("-------------------------------------------")
+    console.log("ALL The Valid Products")
+    for (const product of products) {
+        console.log(`Id:${product.id}, Name: ${product.name}, Prices: ${product.price} ,Rating: ${product.rating}\u2605`);
+      }
+}
+
   //code for rating fucntionality
   showAvailableProductsByRating() {
     const sortedProducts = this.products
@@ -162,25 +173,12 @@ class ShoppingCart {
 
   checkout(username) {
     const totalPrice = this.getTotalPrice();
-    console.log(`Total price: $${totalPrice.toFixed(2)}`);
+    console.log(`Total price: ${totalPrice.toFixed(2)}`);
     console.log(`Thank you ${username} for shopping with us!`);
     this.items = [];
   }
 
   startShopping(username, products) {
-    console.log("Available products:");
-    const rupeeSymbol = "\u20B9";
-    for (const product of products) {
-      console.log(
-        `ID: ${product.id}, Name: ${
-          product.name
-        }, Price: ${rupeeSymbol}${product.price.toFixed(2)} Rating: ${
-          product.rating
-        }`
-      );
-    }
-    console.log("-------------------------------------");
-
     // Example: Add items to the shopping cart based on the user's selection
     if (username === "pavi") {
       this.addItem(products[0]);
@@ -240,13 +238,21 @@ class ChatBot {
 const loginSystem = new LoginSystem();
 
 loginSystem.register("pavi", "hello", "pavi@gmail.com");
-loginSystem.register("hero", "hello", "hero@gmail.com");
-//   loginSystem.login('pavi', 'hello',"pavi@gmail.com");
+loginSystem.register("hero", "how", "hero@gmail.com");
+loginSystem.register("hero", "ru", "hero@gmail.com");
+//all products
+loginSystem.showproducts();
+//sort by rating
+loginSystem.unlock();
+//sort by low to high price
+loginSystem.sortlowtohigh()
+
+ loginSystem.login('pavi', 'hello',"pavi@gmail.com");
 
 //  _________________________________________ advance features___________________________________________________________________
 
-//sort by rating
-loginSystem.unlock();
+
+
 const chatBot = new ChatBot();
 
 //   chat bot is checking the word using includes after thet it generating the response
@@ -254,9 +260,7 @@ const chatBot = new ChatBot();
 //   chatBot.handleQuery("Track product Id is 123");
 //   chatBot.handleQuery("Can i track my parcel");
 
-//filter property
-loginSystem.filterProductsByName("shoes");
+
 //reviews
 
 // sorting by price
-// loginSystem.sortlowtohigh()
