@@ -1,0 +1,68 @@
+.maindiv{      
+    background-color:#F5F2EB;
+    overflow: hidden;
+    padding: 0 50px;
+}
+.navbar {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  .navbar li {
+    float: right;
+    margin: 15px 10px 0 0;
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  i{
+    margin: 0 10px 0 0;
+  }
+  .navbar li:hover {
+    border-radius: 10px;
+    background-color: #ceedd0;
+  }
+  .arrow{
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .active { 
+    background-color:#afd2b2;
+    height: 20px;
+    border-radius: 6px;
+  }
+  
+/* left*/
+.left{
+    width: 50%;
+    height: auto;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right{
+    width: 50%;
+    height: 100%;
+    float: right;
+    background-image: url('https://github.com/Pavitar01/ZenmonkDSA/blob/main/Day4/image.png');
+}
+
+  @media screen and (max-width: 100px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+
+  }
+  @media screen and (max-width: 800px) {
+  
+.right{
+    display: none;
+}
+.left{
+    width: 100%;
+    padding: 10px;
+}
+  }

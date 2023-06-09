@@ -1,0 +1,104 @@
+.card{
+    width:480px;
+    height: 648px;
+    background-color: #ffff;
+    border-radius: 10px;
+    margin: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inner-card{
+    width:378px;
+    height:543px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.inner-card .top{
+    text-align: center;
+    width: 265px;
+    height: 123px;
+    padding: 5px;
+  
+}
+.top .title{
+    margin-top: -30px;
+    font-size: 40px;
+    width: 100%;
+}
+.top .des{
+    margin-top: -15px;
+    font-size: 19px;
+}
+.inner-card .middle{
+width: 376px;
+height: 140px;
+padding: 5px;
+}
+.middle .inner-card{
+    box-sizing: border-box;
+
+}
+.middle .input-div input{
+    width: 95%;
+    height: 30px;
+    border-radius: 6px;
+    margin: 10px 0 0 0;
+    border: 1px solid #797;
+    padding: 8px;
+}
+.bottom{
+    margin: 40px 0 0 0;
+}
+.bottom .signinbtn{
+width: 376px;
+height: 48px;
+background-color: #98C79C;
+border-radius: 6px;
+color: white;
+font-size: 20px;
+border: none;
+padding: 5px;
+}
+/* bottom buttons div */
+.Allbtn{
+    margin-top: 30px;
+    width: 376px;
+    height: 48px;
+}
+/* button css */
+.ids{
+    border-radius: 50px;
+    padding: 10px;
+    width: 120px;
+    height: 40px;
+    margin: 2px;
+    background-color:#ffff ;
+    font-weight: 600;
+}
+
+ .register{
+    color: #898889;
+    font-size: 13px;
+}
+ .register span{
+    color: #181818;
+}
+/* custome-hr
+ */
+ .cutsom-hr{
+    width: 100%;
+    border-top: 1px solid;
+    text-align: center;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    color: black
+ }
+
+ @media screen and (max-width: 800px) {
+  
+    .inner-card{
+        padding: 15px;
+    }
+      }
