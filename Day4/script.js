@@ -232,7 +232,6 @@ class ChatBot {
 // Example usage
 
 const loginSystem = new LoginSystem();
-
 loginSystem.register("pavi", "hello", "pavi@gmail.com");
 loginSystem.register("hero", "how", "hero@gmail.com");
 loginSystem.register("hero", "ru", "hero@gmail.com");
