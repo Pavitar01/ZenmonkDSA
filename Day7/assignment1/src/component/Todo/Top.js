@@ -28,7 +28,10 @@ const Top = ({ addTodo }) => {
             seterr("")
           }}
         />
-        <input
+          <p style={{ position: "absolute", marginTop: "10px", color: "red" }}>
+          {err}
+        </p>
+        <input style={{marginTop:"10px"}}
           type="date"
           value={date}
           className="input"
@@ -41,9 +44,7 @@ const Top = ({ addTodo }) => {
         <button type="submit" className="btn">
           Add +
         </button>
-        <p style={{ position: "absolute", marginTop: "100px", color: "red" }}>
-          {err}
-        </p>
+      
       </form>
     </>
   );
