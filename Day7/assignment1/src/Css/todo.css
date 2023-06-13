@@ -1,0 +1,86 @@
+.parent {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  width: 500px;
+  height: 600px;
+  border: 1px solid blue;
+  overflow: hidden;
+}
+.top {
+  width: 95%;
+  margin: 10px;
+  height: 100px;
+  display: flex;
+  border: 1px solid blue;
+  background-color: aliceblue;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.top .input {
+  width: 200px;
+  height: 20px;
+}
+
+/* middle */
+button {
+  width: 210px;
+}
+.middle {
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+}
+
+.bottom {
+  width: 100%;
+  padding: 20px;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* task div css */
+
+.task {
+  width: 90%;
+  height: 30px;
+  padding: 5px;
+  margin: 5px 2px;
+  border: 1px solid black;
+}
+/* deleted */
+
+.deleted {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.completed {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ .card{
+  width: 500px;
+  height: 600px;
+  border: 1px solid blue;
+}
+
+
+.card h1{
+  text-align: center;
+}
