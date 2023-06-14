@@ -7,7 +7,7 @@ const Top = ({ addTodo }) => {
   const [err, seterr] = useState();
   const handlechange = (e) => {
     e.preventDefault();
-    if (task !== "" )
+    if (task !== "" || date!=="" )
      {
       const val=`Task: ${task} and date is ${date}`
       addTodo(val);

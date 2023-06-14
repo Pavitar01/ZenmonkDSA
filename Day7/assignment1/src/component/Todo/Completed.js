@@ -9,8 +9,8 @@ const Completed = () => {
         <h1>Completed</h1>
         {newarr.map((item) => {
           return (
-            <ul>
-              <li>{item}</li>
+            <ul style={{padding:"20px"}}>
+              <li>{item}<button style={{backgroundColor:"green",color:"white",float:"right",width:"100px"}}>Done</button></li>
             </ul>
           );
         })}
