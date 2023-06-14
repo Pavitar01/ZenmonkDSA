@@ -9,7 +9,7 @@ const Deleted = () => {
         <h1>Deleted Items</h1>
         {
           array.map((item)=>{
-            return(<li>{item}</li>)
+            return(<li style={{padding:"20px"}}>{item}<button style={{backgroundColor:"red",color:"white",float:"right",width:"100px"}}>X</button></li>)
           })
         }
       </div>
