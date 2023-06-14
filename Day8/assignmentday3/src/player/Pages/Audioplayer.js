@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Top from "../component/Top";
-import Middle from "../component/Middle";
 import Bottom from "../component/Bottom";
 import "../css/all.css";
 

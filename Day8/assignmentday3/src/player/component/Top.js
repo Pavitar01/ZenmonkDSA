@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Middle from "./Middle";
-import allsong from "../services/Data";
-import Uploader from "./Uploader";
 
 const Top = ({ value }) => {
 

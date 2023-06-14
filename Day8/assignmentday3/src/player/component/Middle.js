@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import allsong from "../services/Data";
 
 const Middle = ({ value }) => {
   const [ispause, setpause] = useState(true);
@@ -25,16 +23,17 @@ const Middle = ({ value }) => {
   function prev() {}
 
   const next = (prev) => {
-    const nextIndex = prev + 1;
-    if (nextIndex < allsong.length) {
-      // Play the next song
-      console.log('Playing next song:', value[nextIndex].title);
-      return nextIndex;
-    } else {
-      // Reached the end of the list, loop back to the first song
-      console.log('Reached the end of the list, looping back to the first song');
-      return 0;
-    }
+    // const nextIndex = prev + 1;
+    // if (nextIndex < allsong.length) {
+    //   // Play the next song
+    //   console.log('Playing next song:', value[nextIndex].title); 
+    //   setva
+    //   return nextIndex;
+    // } else {
+    //   // Reached the end of the list, loop back to the first song
+    //   console.log('Reached the end of the list, looping back to the first song');
+    //   return 0;
+    // }
   };
 
   return (
