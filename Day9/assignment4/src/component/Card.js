@@ -101,8 +101,8 @@ const Cards = ({ data, newsdata }) => {
           <Card title="Next Days">
             <div>
             {
-              alldays.map((i)=>{
-                return(<li>{i.values.temperature}</li>)
+              alldays.map((i,index)=>{
+                return(<li key={index}>{i.values.temperature}</li>)
               })
               
             }
