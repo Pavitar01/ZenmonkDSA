@@ -1,71 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const Middle = ({ value }) => {
-  const [ispause, setpause] = useState(true);
-  const [button, setbutton] = [
-    {
-      btn: "glyphicon glyphicon-step-backward",
-      btn2: "glyphicon glyphicon-play",
-      btn3: "glyphicon glyphicon-step-forward",
-      btn4: "glyphicon glyphicon-pause",
-    },
-  ];
+const Middle = ({ currentSong, playNextSong, playPreviousSong }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
 
-  function play() {
-    const audio = new Audio(value.src);
-    audio.play();
-    setpause(false);
-  }
-  function pause() {
-    setpause(true);
-  }
-  function prev() {}
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
 
-  const next = (prev) => {
-    // const nextIndex = prev + 1;
-    // if (nextIndex < allsong.length) {
-    //   // Play the next song
-    //   console.log('Playing next song:', value[nextIndex].title); 
-    //   setva
-    //   return nextIndex;
-    // } else {
-    //   // Reached the end of the list, loop back to the first song
-    //   console.log('Reached the end of the list, looping back to the first song');
-    //   return 0;
-    // }
+  const handlePrev = () => {
+    playPreviousSong();
+    setIsPlaying(true);
+  };
+
+  const handleNext = () => {
+    playNextSong();
+    setIsPlaying(true);
   };
 
   return (
     <div className="middle">
       <div className="length"></div>
       <div className="buttons">
-        <button className="btn">
-          <span class={button.btn} onClick={prev}></span>
+        <button className="btn" onClick={handlePrev}>
+          <span className="glyphicon glyphicon-step-backward"></span>
         </button>
-        {ispause ? (
-          <button className="btn">
-            <span
-              class={button.btn2}
-              onClick={() => {
-                play();
-              }}
-            ></span>
+        {isPlaying ? (
+          <button className="btn" onClick={togglePlay}>
+            <span className="glyphicon glyphicon-pause"></span>
           </button>
         ) : (
-          <button className="btn">
-            <span
-              class={button.btn4}
-              onClick={() => {
-                pause();
-              }}
-            ></span>
+          <button className="btn" onClick={togglePlay}>
+            <span className="glyphicon glyphicon-play"></span>
           </button>
         )}
-        <button className="btn">
-          <span class={button.btn3} onClick={()=>{next(value.id)}}></span>
+        <button className="btn" onClick={handleNext}>
+          <span className="glyphicon glyphicon-step-forward"></span>
         </button>
       </div>
+      <audio ref={audioRef} src={currentSong.src}></audio>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-/* css */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,400;1,600&display=swap");
+
 .main {
   width: 100%;
   height: 100vh;
@@ -9,6 +9,7 @@
   background-color: #7b85a9;
   font-family: "Poppins", sans-serif;
 }
+
 /* disc */
 .disc img {
   width: 450px;
@@ -18,6 +19,7 @@
   border-radius: 50%;
   box-shadow: 1px 1px 50px 5px white;
 }
+
 /* box */
 .parent {
   width: 700px;
@@ -40,6 +42,7 @@
   overflow: hidden;
   border-radius: 20px;
 }
+
 .card {
   width: 100%;
   height: 300px;
@@ -68,15 +71,16 @@
   text-align: center;
   font-size: 25px;
 }
+
 /* middle */
 .middle {
   width: 100%;
   height: 200px;
   position: absolute;
   bottom: 0;
-  /* background-color: hotpink; */
   background-color: #151120;
 }
+
 .length {
   width: 95%;
   height: 10px;
@@ -91,6 +95,7 @@
   justify-content: center;
   gap: 20px;
 }
+
 .btn {
   width: 100px;
   height: 100px;
@@ -103,9 +108,11 @@
   cursor: pointer;
   transition: 0.3s linear;
 }
+
 .btn span {
   border: none;
 }
+
 .btn:hover {
   color: rgb(196, 195, 195);
 }
@@ -114,7 +121,7 @@
 .bottom {
   width: 700px;
   height: 150px;
-  background-color: white;
+  background-color: rgb(75, 72, 72);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   overflow: hidden;
@@ -130,23 +137,108 @@
   background-color: #151120;
   border: 1px solid black;
   cursor: pointer;
+  color: white;
 }
+
 .icon {
   float: left;
   width: 60px;
   height: 60px;
 }
+
 .songs .title {
   float: left;
   font-size: 20px;
   margin-top: 15px;
   margin-left: 10px;
 }
-.timer{
-  font-size: 20px;
-  float: right ;
-  margin-top: 15px;
 
-  margin-right: 10px
+.timer {
+  font-size: 20px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 10px;
 }
-/* media  */
+.random{
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  background-color: #855091;
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+/* media queries */
+@media only screen and (max-width: 768px) {
+  /* disc */
+  .disc img {
+    width: 300px;
+    height: 300px;
+    margin-left: 100px;
+  }
+
+  /* box */
+  .parent {
+    width: 90%;
+    height: 80vh;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /* top */
+  .top {
+    height: 70%;
+  }
+
+  .card .songimg {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* middle */
+  .middle {
+    height: 120px;
+  }
+
+  /* buttons */
+  .buttons {
+    height: 100px;
+  }
+
+  .btn {
+    width: 70px;
+    height: 70px;
+    padding: 15px;
+    font-size: 30px;
+  }
+
+  /* bottom */
+  .bottom {
+    display: none;
+    /* width: 90%;
+    height: 100px; */
+  }
+
+  /* list of song */
+  .songs {
+    height: 40px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .songs .title {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  .timer {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+}
