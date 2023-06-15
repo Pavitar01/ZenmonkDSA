@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,400;1,600&display=swap');
 
 .layout {
   width: 100%;
@@ -7,15 +7,17 @@
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
 }
+
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .search {
   width: 500px;
 }
-/* big circle */
+
 .disc {
   width: 50vw;
   height: 100vh;
@@ -24,7 +26,6 @@
   margin: 50px 0 0 600px;
 }
 
-/* maindiv */
 .content {
   width: 100%;
   height: 100vh;
@@ -32,20 +33,18 @@
   align-items: center;
   justify-content: center;
 }
-/* card */
+
 .card {
   width: 60%;
   height: 80%;
   position: absolute;
 }
-/* tempcard */
+
 .tempcard {
   width: 100%;
   height: 300px;
   background-color: blue;
 }
-
-/* degreecard and citycard */
 
 .degreecard,
 .citycard {
@@ -53,7 +52,7 @@
   background-color: rgba(66, 66, 66, 0.3);
   color: white;
 }
-/* tempearture */
+
 .temperature {
   width: 100%;
   height: 100px;
@@ -62,13 +61,15 @@
   top: 50px;
   flex-direction: column;
 }
+
 .temperature .h1 {
   font-size: 60px;
   margin-top: -30px;
   width: 100%;
   margin-left: 30px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 .temperature .h2 {
   font-size: 30px;
   margin-top: -50px;
@@ -87,60 +88,156 @@
   margin-left: 10px;
 }
 
-.humidity .h3{
-    font-size: 20px;
-    font-weight: 500;
-
-}
-.humidity .h3 span{
-    display: block;
-    font-weight: 300;
-}
-.humidity .h4{
-    font-size: 20px;
-    font-weight: 500;
-    margin-left: 40px;
-}
-.humidity .h4 span{
-    display: block;
-    font-weight: 300;
+.humidity .h3 {
+  font-size: 20px;
+  font-weight: 500;
 }
 
-/* location */
+.humidity .h3 span {
+  display: block;
+  font-weight: 300;
+}
 
-.locname{
-    font-size: 100px;
-    margin-top: -50px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 100;
-    margin-left: 20px;
-    overflow: hidden;
-    height: auto;
-    flex-wrap: wrap;
+.humidity .h4 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 40px;
 }
-/* next har */
-.nextdays{
-  width: 600px;
+
+.humidity .h4 span {
+  display: block;
+  font-weight: 300;
 }
-.hr{
-  width: 100%;
-  height: 200px;
-  /* background-color: pink; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.locname {
+  font-size: 80px;
+  margin-top: -30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 100;
+  margin-left: 20px;
   overflow: hidden;
-  overflow-x: scroll;
+  height: auto;
+  flex-wrap: wrap;
 }
-.days{
-  width: 200px;
-  height: 100px;
-  padding: 20px;
-  margin: 20px;
-  background-color: lightgray;
-  border-radius: 20px;
+
+.newscard {
+  height: 150px;
+  border-radius: 4px;
+  padding: 2px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
-/* media  */
+
+.news {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  background-color: rgb(243, 237, 237);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.news img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.news p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.news img:hover {
+  opacity: 0.8;
+}
+
+.nextdays {
+  height: 150px;
+  width: 450px;
+  overflow: auto;
+}
+
+.nextdays .hr {
+  flex-wrap: wrap;
+  padding: 16px;
+  margin-top: -30px;
+}
+
+.days {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 4px;
+  padding: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nextdays .card {
+  border-radius: 4px;
+  padding: 16px;
+  background-color: #f0f0f0;
+  height: 100%;
+}
+
+@media (max-width: 576px) {
+  .days {
+    font-size: 14px;
+  }
+
+  .locname {
+    font-size: 18px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .content {
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .card {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .tempcard {
+    height: 200px;
+  }
+
+  .degreecard,
+  .citycard {
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .humidity {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .days {
+    font-size: 16px;
+  }
+
+  .locname {
+    font-size: 22px;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .disc {
     display: none;

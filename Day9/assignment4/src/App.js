@@ -34,14 +34,15 @@ const App = () => {
   };
 
   useEffect(() => {
-    // const newsapi = async (query) => {
-    //   const news = await fetchnews(query);
-    //   setnews(news.data.articles);
-    // };
-    // let query="delhi"
+    const newsapi = async (query) => {
+      const news = await fetchnews(query);
+      setnews(news.data.articles);
+      // console.log(newdata);
+    };
+    let query = "delhi";
 
-    // newsapi(data.name);
-  },[data]);
+    newsapi(data.name);
+  }, [data]);
 
   return (
     <div className="parent">
@@ -65,7 +66,7 @@ const App = () => {
           }}
           className="content"
         >
-          <Cards data={data} newsdata={newdata}/>
+          <Cards data={data} newsdata={newdata} />
           <Disc />
         </Content>
       </Layout>

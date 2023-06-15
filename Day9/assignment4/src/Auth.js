@@ -56,7 +56,7 @@ function Auth() {
            
               <h5 className="city">{data?.name}</h5>
               <h6 className="temp">
-                {(data?.main?.temp - 273.15).toFixed(2)}°C
+                {(data.main.temp - 273.15).toFixed(2)}°C
               </h6>
             </div>
           </div>
