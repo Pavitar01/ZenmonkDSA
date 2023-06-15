@@ -118,7 +118,28 @@
     height: auto;
     flex-wrap: wrap;
 }
-
+/* next har */
+.nextdays{
+  width: 600px;
+}
+.hr{
+  width: 100%;
+  height: 200px;
+  /* background-color: pink; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.days{
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  margin: 20px;
+  background-color: lightgray;
+  border-radius: 20px;
+}
 /* media  */
 @media screen and (max-width: 992px) {
   .disc {

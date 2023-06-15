@@ -29,7 +29,7 @@ const Cards = ({ data, newsdata }) => {
     };
     console.log(alldays);
 
-    days(10, 10);
+    days(data.coord.lon, data.coord.lat);
 
     const interval = setInterval(updateTimeOfDay, 60000);
     return () => clearInterval(interval);
@@ -59,20 +59,20 @@ const Cards = ({ data, newsdata }) => {
           <Col span={15}>
             <Card bordered={false} className="degreecard">
               <div className="temperature">
-                {/* <h1 className="h1">{(data.main.temp - 273.15).toFixed(2)} °C</h1> */}
-                {/* <h1 className="h2">{data.weather[0].main}</h1> */}
+                <h1 className="h1">{(data.main.temp - 273.15).toFixed(2)} °C</h1>
+                <h1 className="h2">{data.weather[0].main}</h1>
               </div>
               <div className="humidity">
                 <div>
                   <h3 className="h3">
                     Humidity
-                    {/* <span> {data.main.humidity}%</span> */}
+                    <span> {data.main.humidity}%</span>
                   </h3>
                 </div>
                 <div>
                   <h3 className="h4">
                     Wind
-                    {/* <span>{data.wind.speed}kmph</span> */}
+                    <span>{data.wind.speed}kmph</span>
                   </h3>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Cards = ({ data, newsdata }) => {
           </Col>
           <Col span={8}>
             <Card bordered={false} className="citycard">
-              {/* <h1 className="locname">{data.name}</h1> */}
+              <h1 className="locname">{data.name}</h1>
             </Card>
           </Col>
         </Row>
@@ -91,18 +91,18 @@ const Cards = ({ data, newsdata }) => {
             {newsdata.map((item) => {
               return (
                 <>
-                  <li>{/* {item.title} */}</li>
+                  <li>{item.title}</li>
                 </>
               );
             })}
           </Card>
         </Col>
         <Col span={11}>
-          <Card title="Next Days">
-            <div>
+          <Card title="Next Days" className="nextdays">
+            <div className="hr">
             {
               alldays.map((i,index)=>{
-                return(<li key={index}>{i.values.temperature}</li>)
+                return(<div key={index} className="days">{i.values.temperature}°C </div>)
               })
               
             }
