@@ -22,10 +22,10 @@ const Signup = () => {
     }
   };
 
-  useEffect(() => {
-    const x = JSON.parse(localStorage.getItem("User"));
-    setalluser([...x])
-  });
+  // useEffect(() => {
+  //   const x = JSON.parse(localStorage.getItem("User"));
+  //   setalluser([...x])
+  // },[]);
 
   const signupto = () => {
     if (
@@ -39,7 +39,7 @@ const Signup = () => {
     } else if (cpass !== pass) {
       seterr("Both Password should same");
     } else {
-      const Details = {
+      const Details ={
         profile: images,
         name: fname + " " + lname,
         email: email,
