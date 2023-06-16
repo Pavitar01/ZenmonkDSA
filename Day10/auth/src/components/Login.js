@@ -1,29 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import fb from "../assets/fb.png";
 import instagram from "../assets/instagram.png";
 import google from "../assets/google.png";
+
 const Login = ({ setdetails, islogin }) => {
   const arr = [fb, google, instagram];
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [err, seterr] = useState("");
 
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("loggedIn");
+    if (loggedIn === "true") {
+      islogin(true);
+    }
+  }, [islogin]);
+
   const loginto = () => {
-    var allcookies = localStorage.getItem("User");
+    const userString = localStorage.getItem("User");
+    if (!userString) {
+      seterr("There is no user data.");
+      return;
+    }
+
+    const allusers = JSON.parse(userString);
+
     if (email === "" || password === "") {
-      console.log("Please login with correct credential");
-      seterr("Fill right credentials.");
+      seterr("Please fill in all the credentials.");
       islogin(false);
-    } else if (allcookies) {
-      const values = JSON.parse(allcookies);
-      if ((values.email === email, values.password === password)) {
-        alert("Welcome " + values.name + "!");
+    } else if (allusers) {
+      const user = allusers.find(
+        (user) => user.email === email && user.password === password
+      );
+      if (user) {
+        seterr("Login successful.");
         islogin(true);
+        localStorage.setItem("loggedIn", "true");
+      } else {
+        seterr("Incorrect email or password.");
+        islogin(false);
+        localStorage.setItem("loggedIn", "false");
       }
-      console.log(values);
       setdetails(email, password);
     } else {
-      seterr("There is no data...");
+      seterr("There is no user data.");
     }
   };
 
@@ -35,7 +55,7 @@ const Login = ({ setdetails, islogin }) => {
       <div className="other">
         {arr.map((i, index) => (
           <li key={index}>
-            <img src={i} />
+            <img src={i} alt={`Social Media ${index}`} />
           </li>
         ))}
       </div>
@@ -57,14 +77,14 @@ const Login = ({ setdetails, islogin }) => {
         />
         <div className="forget">
           <p>
-            <a href="#">Forget your password ?</a>
+            <a href="#">Forget your password?</a>
           </p>
         </div>
         <p
           style={{
             margin: "-10px 0 0 50px",
             width: "100%",
-            color: "red",
+            color: islogin ? "green" : "red",
             fontSize: "15px",
           }}
         >

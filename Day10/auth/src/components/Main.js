@@ -17,7 +17,7 @@ const Main = () => {
   return (
     <div className="main">
       {val ? (
-        <Profile />
+        <Profile islogin={islogin}/>
       ) : (
         <>
           <Left text={text} islogin={islogin} />

@@ -1,9 +1,10 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import userimg from "../assets/user.png";
+
 const Signup = () => {
-  const admin = "admin",
-    vendor = "vendor",
-    customer = "customer";
+  const admin = "admin";
+  const vendor = "vendor";
+  const customer = "customer";
 
   const [images, setimage] = useState(userimg);
   const [imagename, setimagename] = useState("Upload image");
@@ -13,19 +14,39 @@ const Signup = () => {
   const [pass, setpass] = useState("");
   const [cpass, setcpass] = useState("");
   const [err, seterr] = useState("");
-  const [role, setrole] = useState("");
+  const [role, setrole] = useState("customer");
   const [alluser, setalluser] = useState([]);
+  const [islogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const userString = localStorage.getItem("User");
+    if (userString) {
+      const parsedUsers = JSON.parse(userString);
+      setalluser([...parsedUsers]);
+    }
+  }, []);
+  
+
+  const updateUserLocalStorage = (user) => {
+    localStorage.setItem("User", JSON.stringify(user));
+  };
+
+  const isEmailValid = (email) => {
+    // Email validation regex pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const isEmailTaken = (email) => {
+    return alluser.some((user) => user.email === email);
+  };
+
   const setprofile = (e) => {
     if (e.target.files[0]) {
       setimage(URL.createObjectURL(e.target.files[0]));
       setimagename(e.target.files[0].name);
     }
   };
-
-  // useEffect(() => {
-  //   const x = JSON.parse(localStorage.getItem("User"));
-  //   setalluser([...x])
-  // },[]);
 
   const signupto = () => {
     if (
@@ -35,22 +56,32 @@ const Signup = () => {
       cpass === "" ||
       pass === ""
     ) {
-      seterr("please provide valid details");
+      seterr("Please provide all the required details");
+      setIsLogin(false); // Set islogin to false
+    } else if (!isEmailValid(email)) {
+      seterr("Please enter a valid email address");
+      setIsLogin(false); // Set islogin to false
+    } else if (isEmailTaken(email)) {
+      seterr("This email address is already registered");
+      setIsLogin(false); // Set islogin to false
     } else if (cpass !== pass) {
-      seterr("Both Password should same");
+      seterr("Both passwords should be the same");
+      setIsLogin(false); // Set islogin to false
     } else {
-      const Details ={
+      const newUser = {
         profile: images,
         name: fname + " " + lname,
         email: email,
         password: pass,
         role: role,
       };
-      const x = JSON.parse(localStorage.getItem("User"));
 
-      setalluser([...x, Details]);
-      console.log(alluser);
-      localStorage.setItem("User", JSON.stringify(alluser));
+      setalluser((prevUser) => {
+        const updatedUser = [...prevUser, newUser];
+        updateUserLocalStorage(updatedUser);
+        return updatedUser;
+      });
+
       setlname("");
       setfname("");
       setemail("");
@@ -60,8 +91,10 @@ const Signup = () => {
       seterr("");
       setrole("");
       setimagename("Upload image");
+      setIsLogin(true); // Set islogin to true
     }
   };
+
   return (
     <div className="signup">
       <div className="head">
@@ -76,15 +109,12 @@ const Signup = () => {
           accept="image/*"
           onChange={setprofile}
         />
-        <label for="file">
-          <img src={images} className="userimg" />
+        <label htmlFor="file">
+          <img src={images} alt="User" className="userimg" />
           <p className="usertext">{imagename}</p>
         </label>
       </div>
-      <div
-        className="input"
-        style={{ padding: "20px", boxSizing: "border-box", marginTop: "-20px" }}
-      >
+      <div className="input" style={{ padding: "20px", boxSizing: "border-box", marginTop: "-20px" }}>
         <div className="top">
           <input
             type="text"
@@ -115,7 +145,7 @@ const Signup = () => {
         </div>
         <div className="top">
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             value={pass}
             onChange={(e) => {
@@ -123,7 +153,7 @@ const Signup = () => {
             }}
           />
           <input
-            type="text"
+            type="password"
             placeholder="Retype Password"
             value={cpass}
             onChange={(e) => {
@@ -149,7 +179,7 @@ const Signup = () => {
               setrole(e.target.value);
             }}
           />
-          <label>User</label>
+          <label>Vendor</label>
           <input
             type="radio"
             name="role"
@@ -160,22 +190,11 @@ const Signup = () => {
           />
           <label>Customer</label>
         </div>
-        <p
-          style={{
-            color: "red",
-            height: "10px",
-            marginLeft: "25px",
-            fontSize: "12px",
-          }}
-        >
+        <p style={{ color: islogin ? "green" : "red", height: "10px", marginLeft: "25px", fontSize: "12px" }}>
           {err}
         </p>
         <div className="button" style={{ marginTop: "30px" }}>
-          <button
-            className="btn"
-            onClick={signupto}
-            style={{ marginTop: "-10px" }}
-          >
+          <button className="btn" onClick={signupto} style={{ marginTop: "-10px" }}>
             Signup
           </button>
         </div>
