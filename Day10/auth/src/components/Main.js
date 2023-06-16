@@ -4,6 +4,7 @@ import Right from "./Right";
 import Login from "./Login";
 import Left from "./Left";
 import Profile from "./Profile";
+import Colorpicker from "./colorpicker/Colorpicker";
 const Main = () => {
   const [text, settext] = useState("");
   const [val, setval] = useState(false);
@@ -16,6 +17,7 @@ const Main = () => {
   };
   return (
     <div className="main">
+    <Colorpicker/>
       {val ? (
         <Profile islogin={islogin}/>
       ) : (
