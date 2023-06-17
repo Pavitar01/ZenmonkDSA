@@ -225,7 +225,7 @@
   display: flex;
   flex-direction: column;
 }
-.product{
+.product {
   width: 300px;
   height: 200px;
 }
@@ -249,7 +249,7 @@
 }
 
 /* add product */
-.addproduct{
+.addproduct {
   width: 90%;
   height: 200px;
   display: flex;
@@ -258,15 +258,16 @@
   margin-top: -100px;
   margin-left: 50px;
 }
-.addproduct input,button{
+.addproduct input,
+button {
   width: 300px;
   height: 30px;
   border-radius: 5px;
 }
-.addproduct button{
+.addproduct button {
   width: 310px;
   background-color: var(--main-color);
-  color:white
+  color: white;
 }
 /* about */
 .about {
@@ -274,7 +275,6 @@
   height: 100%;
   background-color: lightgray;
   float: right;
-
 }
 .aboutlogo {
   width: 100%;
@@ -295,22 +295,50 @@
   width: 100%;
   text-align: center;
 }
-.input-fields{
+.input-fields {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.input-fields input{
- width: 95%;
- height: 30px;
- margin: 2px;
+.input-fields input {
+  width: 95%;
+  height: 30px;
+  margin: 2px;
 }
-.input-fields button{
+.input-fields button {
   width: 90%;
   margin: 4px;
   background-color: #4f6ca9;
   color: white;
   cursor: pointer;
+}
+/* cart */
+
+.cart {
+  width: 100%;
+  height: 250px;
+  padding: 20px;
+  background-color: pink;
+}
+.cart .cartitem {
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+  display: flex;
+  cursor: pointer;
+  gap:20px;
+}
+.cart .card {
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+
+}
+
+.card img {
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
 }

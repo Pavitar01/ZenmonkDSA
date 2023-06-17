@@ -1,7 +1,8 @@
 import React from 'react'
 import "../Css/all.css"
-import Products from './Products'
+
 import About from './About'
+import Products from './products/Products'
 const Profile = ({islogin}) => {
 
   return (

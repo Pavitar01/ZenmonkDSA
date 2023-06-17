@@ -1,8 +1,9 @@
 import React from "react";
 
-const Addproduct = ({setNewProductName,setNewProductPrice,setNewProductImage,handleAddProduct}) => {
+const Addproduct = ({setNewProductName,setNewProductPrice,setNewProductImage,handleAddProduct,err}) => {
   return (
-    <div className="addproduct">
+   <>
+     <div className="addproduct">
       <h3>Add Product</h3>
       <input
         type="text"
@@ -21,6 +22,9 @@ const Addproduct = ({setNewProductName,setNewProductPrice,setNewProductImage,han
       />
       <button onClick={handleAddProduct} >Add</button>
     </div>
+    <p style={{width:"100%",textAlign:"center"}}></p>
+   </>
+
   );
 };
 

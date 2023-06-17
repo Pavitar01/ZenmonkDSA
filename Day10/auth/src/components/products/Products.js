@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Addproduct from "./Addproduct";
+import Cart from "./Cart";
 
 const Products = () => {
   const [role, setRole] = useState("");
@@ -35,7 +36,6 @@ const Products = () => {
     }
 
     const newProduct = {
-      id: Date.now(),
       name: newProductName,
       price: parseFloat(newProductPrice),
       image: newProductImage,
@@ -67,14 +67,14 @@ const Products = () => {
           <div key={product.id} className="product">
             <h3>{product.name}</h3>
             <img src={product.image} alt={product.name} className="productimg"/>
-            <p>Price: &#8377;{product.price}</p>
+            <p>Price: {product.price} &#8377;</p>
             {role === "admin" && (
-              <button onClick={() => handleDeleteProduct(product.id)}>
+              <button onClick={() => handleDeleteProduct(product.id)} className="btn" style={{width:"100px"}}>
                 Delete
               </button>
             )}
             {role === "customer" && (
-              <button onClick={() => handleAddToCart(product.id)}>
+              <button onClick={() => handleAddToCart(product.id)} className="btn" style={{width:"100px",backgroundColor:"green"}} >
                 Add to Cart
               </button>
             )}
@@ -82,7 +82,14 @@ const Products = () => {
         ))}
       </div>
      {
-      role==="admin" || role==="vendor" &&(
+      role==="admin" &&(
+        <button className="btn" style={{width:"50px",height:"50px",margin:"20px"}} onClick={()=>{
+        add?setAdd(false):setAdd(true)
+      }}>+</button>
+      )
+     }
+     {
+      role==="vendor" &&(
         <button className="btn" style={{width:"50px",height:"50px",margin:"20px"}} onClick={()=>{
         add?setAdd(false):setAdd(true)
       }}>+</button>
@@ -98,8 +105,8 @@ const Products = () => {
        setNewProductPrice={setNewProductPrice} setNewProductImage={setNewProductImage}/>
       )}
       {
-        role==="user" && add &&(
-          <h1>You can add items</h1>
+        role ==="customer" &&(
+        <Cart cartItems={cartItems}/>
         )
       }
 
