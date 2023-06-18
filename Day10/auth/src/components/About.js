@@ -9,17 +9,21 @@ const About = ({ islogin }) => {
   const [originalDetails, setOriginalDetails] = useState({});
 
   useEffect(() => {
+    const loggedInEmail = localStorage.getItem("loggedInEmail");
     const user = JSON.parse(localStorage.getItem("User"));
     if (user && user.length > 0) {
-      const { name, profile, role, email } = user[0];
-      setFname(name);
-      setLogo(profile);
-      setRole(role);
-      setEmail(email);
-      setOriginalDetails({ name, profile, role, email });
+      const loggedInUser = user.find((user) => user.email === loggedInEmail);
+      
+      if (loggedInUser) {
+        const { name, profile, role, email } = loggedInUser;
+        setFname(name);
+        setLogo(profile);
+        setRole(role);
+        setEmail(email);
+        setOriginalDetails({ name, profile, role, email });
+      }
     }
   }, []);
-
   const handleLogout = () => {
     localStorage.setItem("loggedIn", "false");
     islogin(false);

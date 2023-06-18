@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import fb from "../assets/fb.png";
 import instagram from "../assets/instagram.png";
 import google from "../assets/google.png";
+import bcrypt from "bcryptjs";
+
 
 const Login = ({ setdetails, islogin }) => {
   const arr = [fb, google, instagram];
@@ -22,20 +24,34 @@ const Login = ({ setdetails, islogin }) => {
       seterr("There is no user data.");
       return;
     }
-
+  
     const allusers = JSON.parse(userString);
-
+    console.log(allusers);
     if (email === "" || password === "") {
       seterr("Please fill in all the credentials.");
       islogin(false);
     } else if (allusers) {
-      const user = allusers.find(
-        (user) => user.email === email && user.password === password
-      );
+      const user = allusers.find((user) => user.email === email);
       if (user) {
-        seterr("Login successful.");
-        islogin(true);
-        localStorage.setItem("loggedIn", "true");
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (err) {
+            console.error(err);
+            seterr("An error occurred while logging in");
+            islogin(false);
+            return;
+          }
+  
+          if (result) {
+            seterr("Login successful.");
+            localStorage.setItem("loggedInEmail", email);
+            islogin(true);
+            localStorage.setItem("loggedIn", "true");
+          } else {
+            seterr("Incorrect email or password.");
+            islogin(false);
+            localStorage.setItem("loggedIn", "false");
+          }
+        });
       } else {
         seterr("Incorrect email or password.");
         islogin(false);
@@ -46,7 +62,6 @@ const Login = ({ setdetails, islogin }) => {
       seterr("There is no user data.");
     }
   };
-
   return (
     <div className="loginmain">
       <div className="head">

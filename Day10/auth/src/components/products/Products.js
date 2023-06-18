@@ -13,9 +13,13 @@ const Products = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("User"));
-    if (user && user.length > 0) {
-      setRole(user[0].role);
+  if (user && user.length > 0) {
+    const loggedInEmail = localStorage.getItem("loggedInEmail");
+    const loggedInUser = user.find((user) => user.email === loggedInEmail);
+    if (loggedInUser) {
+      setRole(loggedInUser.role);
     }
+  }
 
     // Load products from localStorage
     const savedProducts = JSON.parse(localStorage.getItem("Products"));
@@ -56,9 +60,30 @@ const Products = () => {
   const handleAddToCart = (productId) => {
     const productToAdd = products.find((product) => product.id === productId);
     if (productToAdd) {
-      setCartItems((prevCartItems) => [...prevCartItems, productToAdd]);
+      if (cartItems[productId]) {
+        // Product already exists 
+        const updatedCartItems = {
+          ...cartItems,
+          [productId]: {
+            ...cartItems[productId],
+            quantity: cartItems[productId].quantity + 1,
+          },
+        };
+        setCartItems(updatedCartItems);
+      } else {
+        // Product doesn't exist in the cart, add it with quantity 1
+        const newCartItem = {
+          ...productToAdd,
+          quantity: 1,
+        };
+        setCartItems((prevCartItems) => ({
+          ...prevCartItems,
+          [productId]: newCartItem,
+        }));
+      }
     }
   };
+  
 
   return (
     <div className="products">
