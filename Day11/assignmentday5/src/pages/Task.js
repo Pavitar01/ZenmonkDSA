@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Input from "../component/Input";
-import { Button, DatePicker, Descriptions, Select } from "antd";
+import { Button, DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 
 const Task = () => {
@@ -24,27 +23,38 @@ const Task = () => {
     setSelect(value);
   };
 
-  // button
-
   const addetails = () => {
     const values = {
       name: select,
       dte: dte,
       description: des,
     };
-    if (select === "select" || des === "" || dte === "Select date") {
+    if (!select || !des|| !dte) {
       setErr("Please fill all fields");
-    } else {
-      const existitem = arr.findIndex((item) => item.name === select);
-      if (existitem !== -1) {
-        const updatedArr = [...arr];
-        updatedArr[existitem].count += 1;
+    }else {
+      const existItem = arr.find((item) => item.name === select);
+      if (existItem) {
+        const updatedArr = arr.map((item) => {
+          if (item.name === select) {
+            return {
+              ...item,
+              count: item.count + 1,
+              tasks: [...item.tasks, values],
+            };
+          }
+          return item;
+        });
         setArr(updatedArr);
       } else {
-        setArr([...arr, { ...values, count: 1 }]);
+        setArr([...arr, { ...values, count: 1, tasks: [values] }]);
       }
+      setDesp("");
+      setSelect("");
+      setDte("");
+      setErr("");
     }
   };
+  
 
   return (
     <>
@@ -60,7 +70,6 @@ const Task = () => {
         <Select
           className="select"
           defaultValue="select"
-          // style={{ width: 120 }}
           onChange={handleChange}
           options={user}
         />
@@ -109,14 +118,19 @@ const Task = () => {
             );
           })}
         </div>
-        <h1 style={{ textAlign: "center" }}>List of user</h1>
+        <h1 style={{ textAlign: "center" }}>List of users</h1>
         <div className="data">
           {arr.map((i, index) => {
             return (
               <div key={index} className="detailslist">
                 <h5>{i.name}</h5>
-                <p>Description:{i.description}</p>
-                <p>Date:{i.dte}</p>
+                <p>All Tasks:</p>
+                {i.tasks.map((task, taskIndex) => (
+                  <div key={taskIndex}>
+                    <p>Description:- {task.description}</p>
+                    <p>Date: {task.dte}</p>
+                  </div>
+                ))}
               </div>
             );
           })}

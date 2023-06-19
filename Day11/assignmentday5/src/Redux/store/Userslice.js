@@ -44,6 +44,5 @@ const user = createSlice({
 export const { adduser } = userslice.actions; //get the action
 export const { delt } = userslice.actions; //get the action
 export const { assigntask } = user.actions; //get the action
-// export {userslice}
 export default userslice.reducer;
 export  {user};
