@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Addproduct from "./Addproduct";
+import { v4 as uuidv4 } from 'uuid'; //for unique id
 import Cart from "./Cart";
 
 const Products = () => {
@@ -13,13 +14,13 @@ const Products = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("User"));
-  if (user && user.length > 0) {
-    const loggedInEmail = localStorage.getItem("loggedInEmail");
-    const loggedInUser = user.find((user) => user.email === loggedInEmail);
-    if (loggedInUser) {
-      setRole(loggedInUser.role);
+    if (user && user.length > 0) {
+      const loggedInEmail = localStorage.getItem("loggedInEmail");
+      const loggedInUser = user.find((user) => user.email === loggedInEmail);
+      if (loggedInUser) {
+        setRole(loggedInUser.role);
+      }
     }
-  }
 
     // Load products from localStorage
     const savedProducts = JSON.parse(localStorage.getItem("Products"));
@@ -40,6 +41,7 @@ const Products = () => {
     }
 
     const newProduct = {
+      id: uuidv4(),
       name: newProductName,
       price: parseFloat(newProductPrice),
       image: newProductImage,
@@ -53,7 +55,7 @@ const Products = () => {
 
   const handleDeleteProduct = (productId) => {
     setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== productId)
+      prevProducts.filter((i) => i.id !== productId)
     );
   };
 
@@ -61,7 +63,7 @@ const Products = () => {
     const productToAdd = products.find((product) => product.id === productId);
     if (productToAdd) {
       if (cartItems[productId]) {
-        // Product already exists 
+        // Product already exists
         const updatedCartItems = {
           ...cartItems,
           [productId]: {
@@ -83,7 +85,6 @@ const Products = () => {
       }
     }
   };
-  
 
   return (
     <div className="products">
@@ -91,51 +92,72 @@ const Products = () => {
         {products.map((product) => (
           <div key={product.id} className="product">
             <h3>{product.name}</h3>
-            <img src={product.image} alt={product.name} className="productimg"/>
+            <img
+              src={product.image}
+              alt={product.name}
+              className="productimg"
+            />
             <p>Price: {product.price} &#8377;</p>
             {role === "admin" && (
-              <button onClick={() => handleDeleteProduct(product.id)} className="btn" style={{width:"100px"}}>
+              <button
+                onClick={() => handleDeleteProduct(product.id)}
+                className="btn"
+                style={{ width: "100px" }}
+              >
                 Delete
               </button>
             )}
             {role === "customer" && (
-              <button onClick={() => handleAddToCart(product.id)} className="btn" style={{width:"100px",backgroundColor:"green"}} >
+              <button
+                onClick={() => handleAddToCart(product.id)}
+                className="btn"
+                style={{ width: "100px", backgroundColor: "green" }}
+              >
                 Add to Cart
               </button>
             )}
           </div>
         ))}
       </div>
-     {
-      role==="admin" &&(
-        <button className="btn" style={{width:"50px",height:"50px",margin:"20px"}} onClick={()=>{
-        add?setAdd(false):setAdd(true)
-      }}>+</button>
-      )
-     }
-     {
-      role==="vendor" &&(
-        <button className="btn" style={{width:"50px",height:"50px",margin:"20px"}} onClick={()=>{
-        add?setAdd(false):setAdd(true)
-      }}>+</button>
-      )
-     }
-      {role === "admin" && add &&(
-       
-       <Addproduct handleAddProduct={handleAddProduct} setNewProductName={setNewProductName}
-       setNewProductPrice={setNewProductPrice} setNewProductImage={setNewProductImage}/>
+      {role === "admin" && (
+        <button
+          className="btn"
+          style={{ width: "50px", height: "50px", margin: "20px" }}
+          onClick={() => {
+            add ? setAdd(false) : setAdd(true);
+          }}
+        >
+          +
+        </button>
       )}
-      {role === "vendor" && add &&(
-        <Addproduct handleAddProduct={handleAddProduct} setNewProductName={setNewProductName}
-       setNewProductPrice={setNewProductPrice} setNewProductImage={setNewProductImage}/>
+      {role === "vendor" && (
+        <button
+          className="btn"
+          style={{ width: "50px", height: "50px", margin: "20px" }}
+          onClick={() => {
+            add ? setAdd(false) : setAdd(true);
+          }}
+        >
+          +
+        </button>
       )}
-      {
-        role ==="customer" &&(
-        <Cart cartItems={cartItems}/>
-        )
-      }
-
-      
+      {role === "admin" && add && (
+        <Addproduct
+          handleAddProduct={handleAddProduct}
+          setNewProductName={setNewProductName}
+          setNewProductPrice={setNewProductPrice}
+          setNewProductImage={setNewProductImage}
+        />
+      )}
+      {role === "vendor" && add && (
+        <Addproduct
+          handleAddProduct={handleAddProduct}
+          setNewProductName={setNewProductName}
+          setNewProductPrice={setNewProductPrice}
+          setNewProductImage={setNewProductImage}
+        />
+      )}
+      {role === "customer" && <Cart cartItems={cartItems} />}
     </div>
   );
 };

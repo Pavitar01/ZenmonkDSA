@@ -3,13 +3,14 @@ import fb from "../assets/fb.png";
 import instagram from "../assets/instagram.png";
 import google from "../assets/google.png";
 import bcrypt from "bcryptjs";
-
+import Forget from "./Forget";
 
 const Login = ({ setdetails, islogin }) => {
   const arr = [fb, google, instagram];
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [err, seterr] = useState("");
+  const [forgot, setforgot] = useState(false);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
@@ -18,13 +19,18 @@ const Login = ({ setdetails, islogin }) => {
     }
   }, [islogin]);
 
+  //forget pass
+  const forget = () => {
+    forgot ? setforgot(false) : setforgot(true);
+  };
+
   const loginto = () => {
     const userString = localStorage.getItem("User");
     if (!userString) {
       seterr("There is no user data.");
       return;
     }
-  
+
     const allusers = JSON.parse(userString);
     console.log(allusers);
     if (email === "" || password === "") {
@@ -40,7 +46,7 @@ const Login = ({ setdetails, islogin }) => {
             islogin(false);
             return;
           }
-  
+
           if (result) {
             seterr("Login successful.");
             localStorage.setItem("loggedInEmail", email);
@@ -91,10 +97,13 @@ const Login = ({ setdetails, islogin }) => {
           onChange={(e) => setpassword(e.target.value)}
         />
         <div className="forget">
-          <p>
+          <p onClick={forget}>
             <a href="#">Forget your password?</a>
           </p>
         </div>
+
+        {forgot && <Forget />}
+
         <p
           style={{
             margin: "-10px 0 0 50px",
