@@ -1,0 +1,232 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+    --main-color: #393080;
+  }
+.main {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(white,var(--main-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.note {
+  width: 600px;
+  height: 500px;
+  background-color: var(--main-color);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 1px 1px 50px 5px white;
+  border: 1px solid black;
+
+}
+.top {
+  width: 100%;
+  height: 50px;
+  background-color: var(--main-color);
+}
+.top .button {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  float: right;
+  margin: 10px 20px auto;
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  background-color: blanchedalmond;
+  transition: 0.3s linear;
+}
+
+.button:hover {
+  background-color: beige;
+}
+
+
+/* add bar */
+.add {
+  width: 300px;
+  height: 250px;
+  background-color: bisque;
+  position: absolute;
+  border: 1px solid black;
+  top: 20%;
+  left: 40%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.add input {
+  width: 95%;
+  height: 20px;
+  padding: 5px;
+}
+.feild{
+    height: 70px;
+}
+/* list */
+.list {
+  width: 100%;
+  height: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid white;
+}
+
+/* card */
+.card {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid white;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  color: white;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 10px 2px rgb(188, 185, 185);
+}
+
+.card h1{
+    width: 80%;
+    padding: 5px;
+}
+.card .p{
+width: 90%;
+height: 10px;
+}
+.bottom {
+  height: 20px;
+}
+.bottom p:hover {
+  box-shadow: 1px 1px 10px 1px rgb(198, 194, 194);
+}
+
+/* big card */
+
+.bigcard {
+  width: 500px;
+  height: 400px;
+  background-color: rgb(209, 209, 185);
+  position: absolute;
+  top: 25%; 
+  left: 32%;
+
+  border-radius: 20px;
+}
+
+.bigcard button {
+  position: absolute;
+  left: 5%;
+  top: 2%;
+  background-color: skyblue;
+  color: black;
+  width: 50px;
+}
+.bigcard .p {
+  padding: 20px;
+  width:455px;
+  height: 300px;
+  display: flex;
+  overflow: hidden;
+  column-count: 2;
+}
+
+/* search */
+.search {
+  width: 100%;
+  height: 30px;
+}
+.search .div {
+  float: right;
+  display: flex;
+  outline: 1px solid white;
+  padding: 2px;
+  margin-right: 2px;
+  border-radius: 5px;
+}
+
+.search input {
+  border: none;
+  padding: 5px;
+  color: white;
+  background-color: transparent;
+}
+.search input::placeholder { 
+    color: white;
+    opacity: 1; 
+  }
+
+.search p {
+  cursor: pointer;
+  color: aliceblue;
+}
+
+/* head */
+.head {
+  width: 150px;
+  height: 150px;
+  background-color: pink;
+  padding: 5px;
+  border-radius: 20px;
+  text-align: center;
+  word-wrap: break-word;
+  overflow: hidden;
+  margin: 10px;
+}
+.head p {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  background-color: white;
+  word-wrap: break-word;
+}
+.bigcard2 {
+  width: 500px;
+  height: 400px;
+  background-color: rgb(209, 209, 185);
+  position: absolute;
+  top: 25%;
+  left: 32%;
+  border-radius: 20px;
+}
+.bigcard2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+.bigcard input {
+  width: 90%;
+  margin: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.feild2{
+    height: 150px;
+    background-color: aliceblue;
+    color: black;
+}
+.bigcard2 button {
+ position: absolute;
+ width:95%;
+ border: none;
+ bottom: 10px;
+ border-radius: 20px;
+ cursor: pointer;
+}
