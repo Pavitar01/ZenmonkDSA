@@ -9,8 +9,11 @@ const noteslice = createSlice({
     delnote(state, action) {
         state.pop(action.payload);
     },
+    updateNote(state, action) {
+        state[action.payload.index]=action.payload.temp
+    },
   },
 });
 
 export default noteslice.reducer;
-export const { addnote,delnote } = noteslice.actions; //get the action
+export const { addnote,delnote,updateNote } = noteslice.actions; //get the action

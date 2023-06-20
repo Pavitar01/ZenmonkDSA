@@ -80,6 +80,7 @@ const List = () => {
                     arr={arr}
                     setArr={setArr}
                     setToggledit={setToggledit}
+                    index={index}
                   />
                 )}
               </div>

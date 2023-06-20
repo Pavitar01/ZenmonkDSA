@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
+import { useDispatch } from "react-redux";
+import { updateNote } from "../Redux/slice";
 
-const Bigcard2 = ({ title, des, arr, setArr, setToggledit }) => {
+const Bigcard2 = ({ title, des, arr, setArr, setToggledit,index }) => {
   const [newtitle, setNewtitle] = useState(title);
   const [desc, setNewdes] = useState(des);
   const [err, setErr] = useState("");
   //   tools]
+  const dispatch = useDispatch();
   const modules = {
     toolbar: [
       [{ font: [] }],
@@ -19,22 +22,16 @@ const Bigcard2 = ({ title, des, arr, setArr, setToggledit }) => {
     ],
   };
 
+  const temp={
+    title:newtitle,
+    des:desc
+  }
   const handleSubmit = () => {
     if (!newtitle || !desc) {
       setErr("Please fill all the fields");
     } else {
-      const updatedArr = arr.map((item) => {
-        if (item.title === title && item.des === des) {
-          return {
-            ...item,
-            title: newtitle,
-            des: desc,
-          };
-        }
-        return item;
-      });
-
-      setArr(updatedArr);
+  
+      dispatch(updateNote({ index: index, temp: temp }))
     }
   };
 
