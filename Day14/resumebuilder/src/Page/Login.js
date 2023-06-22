@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import loginimg from "../Assets/images/loginimg.jpg";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "../Css/All.css";
 import { addUser } from "../Redux/Store/Slice/UserSlice";
 const Login = () => {
-  const [ph, setPh] = useState(0);
+  const [ph, setPh] = useState("");
   const [err, setErr] = useState("");
-  const [val,setVal]=useState("/")
-  const dispatch=useDispatch()
+  const [val, setVal] = useState("/");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleChange = () => {
-    if (ph === 0) {
-      setErr("Please Fill This Feild");
-    } 
-    else{
-      dispatch(addUser(ph))
-      setVal("/Otp")
+    if (!/^\d{10}$/.test(ph)) {
+      setErr("Invalid phone number");
+    } else {
+      dispatch(addUser(ph));
+      setVal("/otp");
     }
   };
   return (
@@ -30,11 +30,13 @@ const Login = () => {
             placeholder="Phone number"
             value={ph}
             onChange={(e) => {
-              setPh(Number(e.target.value));
+              setPh(e.target.value);
               setErr("");
             }}
           />
-          <p>{err}</p>
+          <p style={{ width: "100%", textAlign: "center", color: "red" }}>
+            {err}
+          </p>
           <button>
             <Link to={val} onClick={handleChange}>
               Send Otp

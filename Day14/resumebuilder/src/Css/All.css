@@ -89,38 +89,52 @@
   border-radius: 10px;
 }
 .resume {
-  width: 100%;
-  height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
+  margin: 20px;
 }
 
 .input {
-  width: 500px;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #ced0d1;
-  gap: 10px;
-  border-radius: 10px;
+  width: 400px;
+  margin-bottom: 20px;
 }
-.input input {
-  width: 200px;
-  height: 20px;
-  border: none;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 5px;
+
+.input h1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
+
+.input input,
 .input textarea {
-  width: 200px;
-  height: 60px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   resize: none;
 }
+
+ button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+ button:hover {
+  background-color: #0056b3;
+}
+
+.resume p {
+  color: red;
+  margin-top: 10px;
+}
+
 .addResume {
   width: 100%;
   height: 100vh;
@@ -162,6 +176,11 @@
   background-color: rgb(99, 99, 185);
   color: white;
 }
+.preview{
+  position: absolute;
+  background-color: white;
+  width: 500px;
+}
 
 /* template */
 .template {
@@ -187,33 +206,49 @@
   overflow-y: scroll;
   gap: 20px;
 }
-.card {
+.card1 {
   width: 250px;
   height: 250px;
   background-color: white;
   border: 1px solid black;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('https://marketplace.canva.com/EAD7WY_6Ncs/1/0/1131w/canva-navy-blue-and-black-professional-resume-uLR8G4DSbAs.jpg');
 }
-.card .left {
-  width: 20%;
+.card2{
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  border: 1px solid black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('https://preview.redd.it/629lvulyubm71.jpg?width=640&height=805&crop=smart&auto=webp&s=043523e0739839170050d6d0d73780fd93072896');
+}
+.card3{
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid black;
+  background-image: url('https://i.pinimg.com/originals/9a/aa/34/9aaa34c530d13d6d92eb7366c519fbac.jpg');
+}
+
+.resume1{
+  width: 500px;
+  height: 500px;
+  border: 1px solid black
+}
+.resume1 .right{
+  width: 30%;
   height: 100%;
   float: left;
-  background-color: rgb(51, 51, 133);
+  background-color:  rgb(51, 51, 133);;
 }
-.left .image {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-}
-.image img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-top: 10px;
-}
-.card .right {
-  width: 70%;
+.resume1 .details{
+  width: 65%;
   height: 100%;
+  padding-left: 10px;
   float: right;
   background-color: white;
 }

@@ -1,21 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
- const ResumeSlice = createSlice({
+const ResumeSlice = createSlice({
   name: "ResumeData",
   initialState: {
-    islogin: false,
-    isnumber:null,
-    data: [],
+    isLogin: false,
+    phoneNumber: null,
+    submittedDetails: null,
+    templates: [],
   },
-  addResume(state, action) {
-    state.islogin=true
-    state.data = [...action.payload];
+  reducers: {
+    addResume(state, action) {
+      state.isLogin = true;
+      state.templates.push(action.payload);
+    },
+    AddTemplate(state, action) {
+      state.isLogin = true;
+      state.templates.push(action.payload);
+    },
+    addPhoneNumber(state, action) {
+      state.phoneNumber = action.payload;
+    },
+    submitDetails(state, action) {
+      state.submittedDetails = action.payload;
+    },
   },
-  addNumber(state,action){
-    // state.data=[.ac]
-    state.data=action.payload
-  }
 });
 
+export const { addResume, addPhoneNumber, submitDetails ,AddTemplate} = ResumeSlice.actions;
 export default ResumeSlice.reducer;
-export const { addResume,addNumber} = ResumeSlice.actions; //get the action

@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TemplateOne from "../Template/TemplateOne";
+import TemplateTwo from "../Template/TemplateTwo";
+import { useDispatch } from "react-redux";
+import { submitDetails } from "../Redux/Store/Slice/ResumeSlice";
+
 const Resume = () => {
+  const [selectedTemplate, setSelectedTemplate] = useState(1);
   const [Name, setName] = useState("");
   const [Designation, setDesignation] = useState("");
   const [Address, setAddress] = useState("");
@@ -8,7 +14,8 @@ const Resume = () => {
   const [Project, setProject] = useState("");
   const [Exp, setExp] = useState("");
   const [err, setErr] = useState("");
-
+  const [previewMode, setPreviewMode] = useState(false);
+  const dispatch = useDispatch();
   const reset = () => {
     setAddress("");
     setDesignation("");
@@ -17,6 +24,7 @@ const Resume = () => {
     setObjective("");
     setProject("");
   };
+
   const submit = () => {
     if (
       Address === "" ||
@@ -26,11 +34,19 @@ const Resume = () => {
       Objective === "" ||
       Project === ""
     ) {
-      setErr("Please Fill All Feild");
+      setErr("Please Fill All Fields");
+    } else {
+      navigate("/Add")
+      dispatch(submitDetails()); // Dispatch the submitDetails action
     }
   };
 
   const navigate = useNavigate();
+
+  const handleTemplateChange = (templateId) => {
+    setSelectedTemplate(templateId);
+  };
+
   return (
     <div className="resume">
       <div className="input">
@@ -82,15 +98,56 @@ const Resume = () => {
           }}
           placeholder="Project"
         ></textarea>
-        <button onClick={() => navigate("/Otp")}>Back</button>
+        <button onClick={() => navigate("/Add")}>Back</button>
       </div>
       <div>
-        {" "}
-        <button>Preview</button>
+    
         <button onClick={submit}>Submit</button>
         <button onClick={reset}>Reset</button>
+        <button
+          onClick={() => {
+            setPreviewMode(true);
+          }}
+        >
+          Preview
+        </button>
       </div>
       <p>{err}</p>
+      {selectedTemplate === 1 && previewMode && (
+        <div className="preview">
+          <TemplateOne
+            details={{
+              Name,
+              Designation,
+              Address,
+              Objective,
+              Project,
+              Exp,
+            }}
+          />
+          <button onClick={() => setPreviewMode(false)}>Edit</button>
+          <button onClick={() => handleTemplateChange(1)}>Resume1</button>
+          <button onClick={() => handleTemplateChange(2)}>Resume2</button>
+        </div>
+      )}
+
+      {selectedTemplate === 2 && previewMode && (
+        <div className="preview">
+          <TemplateTwo
+            details={{
+              Name,
+              Designation,
+              Address,
+              Objective,
+              Project,
+              Exp,
+            }}
+          />
+          <button onClick={() => setPreviewMode(false)}>Edit</button>
+          <button onClick={() => handleTemplateChange(1)}>Resume1</button>
+          <button onClick={() => handleTemplateChange(2)}>Resume2</button>
+        </div>
+      )}
     </div>
   );
 };
