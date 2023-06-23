@@ -24,9 +24,7 @@ const App = () => {
   const verified = useSelector((state) => {
     return state.userData.isverified;
   });
-  // useEffect(()=>{
-  //     verified && navigate("/Resume")
-  // },[])
+
   return (
     <Routes>
       <Route path="/" element={<Login />} />

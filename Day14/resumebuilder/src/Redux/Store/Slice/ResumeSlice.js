@@ -5,26 +5,26 @@ const ResumeSlice = createSlice({
   initialState: {
     isLogin: false,
     phoneNumber: null,
-    submittedDetails: null,
-    templates: [],
+    submittedDetails:[],
+    templates: null,
   },
   reducers: {
-    addResume(state, action) {
-      state.isLogin = true;
-      state.templates.push(action.payload);
-    },
+
     AddTemplate(state, action) {
-      state.isLogin = true;
-      state.templates.push(action.payload);
+      state.templates=action.payload;
     },
     addPhoneNumber(state, action) {
       state.phoneNumber = action.payload;
     },
     submitDetails(state, action) {
-      state.submittedDetails = action.payload;
+      state.submittedDetails.push(action.payload.data)
+    },
+    delResume(state, action) {
+     state.submittedDetails = state.submittedDetails.filter((x, i)=> i!=action.payload)
     },
   },
 });
 
-export const { addResume, addPhoneNumber, submitDetails ,AddTemplate} = ResumeSlice.actions;
+export const { addResume, addPhoneNumber, submitDetails, AddTemplate, Update ,delResume} =
+  ResumeSlice.actions;
 export default ResumeSlice.reducer;

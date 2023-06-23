@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TemplateOne from "../Template/TemplateOne";
 import TemplateTwo from "../Template/TemplateTwo";
-import { useDispatch } from "react-redux";
-import { submitDetails } from "../Redux/Store/Slice/ResumeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Update, submitDetails } from "../Redux/Store/Slice/ResumeSlice";
 
 const Resume = () => {
-  const [selectedTemplate, setSelectedTemplate] = useState(1);
+  const temp = useSelector((state) => {
+    return state.resumeData.templates;
+  });
+  const [selectedTemplate, setSelectedTemplate] = useState(temp);
   const [Name, setName] = useState("");
   const [Designation, setDesignation] = useState("");
   const [Address, setAddress] = useState("");
@@ -25,6 +28,25 @@ const Resume = () => {
     setProject("");
   };
 
+  const ph = useSelector((state) => {
+    return state.userData.data;
+  });
+
+  const sendData = {
+    id: ph,
+    templates: {
+      template_id: selectedTemplate,
+      data: {
+        name: Name,
+        address: Address,
+        designation: Designation,
+        experience: "Experience : " + Exp,
+        objective: Objective,
+        project: Project,
+      },
+    },
+  };
+
   const submit = () => {
     if (
       Address === "" ||
@@ -36,8 +58,8 @@ const Resume = () => {
     ) {
       setErr("Please Fill All Fields");
     } else {
-      navigate("/Add")
-      dispatch(submitDetails()); // Dispatch the submitDetails action
+      navigate("/Add");
+      dispatch(submitDetails({ data: sendData })); // Dispatch the submitDetails action
     }
   };
 
@@ -101,7 +123,6 @@ const Resume = () => {
         <button onClick={() => navigate("/Add")}>Back</button>
       </div>
       <div>
-    
         <button onClick={submit}>Submit</button>
         <button onClick={reset}>Reset</button>
         <button
