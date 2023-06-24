@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import user from "../Assets/images/user.jpg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AddTemplate } from "../Redux/Store/Slice/ResumeSlice";
+import { addTemplate } from "../Redux/Store/Slice/ResumeSlice";
 
 const Card = () => {
-  const selTemp=useSelector((item)=>{
-    return item.resumeData.templates
-  })
+  const img1 =
+    "https://th.bing.com/th/id/OIP._5MXqmJqyqkkEMMp7DdxagAAAA?pid=ImgDet&rs=1";
+  const img2 =
+    "https://i.pinimg.com/originals/b4/55/17/b455170adb05065d9d884736da260d12.jpg";
+  const selTemp = useSelector((state) => state.resumeData.templates);
   const [selectedTemplate, setSelectedTemplate] = useState(selTemp);
   const handleTemplateChange = (templateId) => {
     setSelectedTemplate(templateId);
@@ -15,48 +17,51 @@ const Card = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const ph = useSelector((state) => {
-    return state.userData.data;
-  });
-
-
-  // usestate object;
-
-
-// const
-
-
-  const tempData = {
-    id: ph,
-    templates: {
-      template_id: selectedTemplate,
-      data: null,
-    },
-  };
+  const ph = useSelector((state) => state.userData.data);
 
   return (
     <>
       <div
-        className="card1"
+        className="card"
+        style={{ backgroundImage: `url('${img1}')` }}
         onClick={() => {
           handleTemplateChange(1);
-          dispatch(AddTemplate(1));
+          dispatch(addTemplate(1));
           navigate("/Resume");
         }}
       ></div>
       <div
-        className="card2"
+        className="card"
         onClick={() => {
           handleTemplateChange(2);
-          dispatch(AddTemplate(2));
+          dispatch(addTemplate(2));
           navigate("/Resume");
         }}
       ></div>
       <div
-        className="card3"
+        className="card"
+        style={{ backgroundImage: `url('${img2}')` }}
+
+        onClick={() => {
+          
+          handleTemplateChange(3);
+          dispatch(addTemplate(3));
+          navigate("/Resume");
+
+        }}
+      ></div>
+      <div
+        className="card"
         onClick={() => {
           handleTemplateChange(3);
-          dispatch(AddTemplate(3));
+          dispatch(addTemplate(1));
+        }}
+      ></div>
+      <div
+        className="card"
+        onClick={() => {
+          handleTemplateChange(3);
+          dispatch(addTemplate(1));
         }}
       ></div>
     </>

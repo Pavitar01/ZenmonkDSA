@@ -1,10 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .login {
   width: 100%;
   height: 100vh;
+  background-color: #ffffff;
 }
 .login .left {
   width: 50%;
-  height: 100%;
+  height: 90%;
   float: left;
   background-image: url(../Assets/images/loginimg.jpg);
   background-repeat: no-repeat;
@@ -62,7 +68,6 @@
 .otp {
   width: 100%;
   height: 100vh;
-
   background-image: url(../Assets/images/otp2.jpg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -90,10 +95,10 @@
 }
 .resume {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
   margin: 20px;
+  flex-direction: column;
+  margin: -6px auto;
 }
 
 .input {
@@ -116,7 +121,7 @@
   resize: none;
 }
 
- button {
+button {
   padding: 10px 20px;
   margin-right: 10px;
   border: none;
@@ -126,7 +131,7 @@
   cursor: pointer;
 }
 
- button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
@@ -138,26 +143,29 @@
 .addResume {
   width: 100%;
   height: 100vh;
-  background-color: #ced0d1;
+  background: linear-gradient(rgb(255, 255, 255), rgb(161, 161, 238));
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .add {
-  width: 600px;
-  height: 600px;
+  width: 90%;
+  height: 700px;
   border-radius: 20px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  background-color: rgb(172, 172, 246);
+  gap: 20px;
+  background-color: rgba(138, 133, 133, 0.452);
 }
 .add .grid {
   width: 100%;
   height: 450px;
-  background-color: rgb(172, 172, 246);
   overflow-y: scroll;
+  border: 1px solid black;
   overflow-x: hidden;
+  justify-content: space-evenly;
 }
 .add button {
   position: absolute;
@@ -168,28 +176,28 @@
   border-radius: 100%;
   cursor: pointer;
   width: 50px;
-  background-color: rgb(172, 172, 246);
-  box-shadow: 10px 10px 50px 5px rgb(205, 205, 220);
+  background-color: blue;
   transition: 0.3s ease-in-out;
 }
 .add button:hover {
   background-color: rgb(99, 99, 185);
   color: white;
 }
-.preview{
-  position: absolute;
-  background-color: white;
+.preview {
   width: 500px;
+  height: 700px;
+  position: absolute;
+  top: 5px;
+  background-color: white;
 }
 
 /* template */
 .template {
-  width: 600px;
-  height: 500px;
+  width: 100%;
+  height: 100vh;
   position: absolute;
+  top: 0;
   background-color: white;
-  top: 9%;
-  left: 30%;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -197,70 +205,111 @@
   padding: 5px;
   font-size: 20px;
 }
-.grid{
+.grid {
   width: 100%;
   height: 100%;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  padding: auto;
 }
-.card{
-  margin: 10px;
-  
-  background-color: white ;
-}
+
 .cards {
   width: 100%;
-  height: 390px;
-  overflow-x: hidden;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
-  gap: 20px;
+  overflow-x: scroll;
+  justify-content: space-evenly;
 }
-.card1 {
-  width: 250px;
-  height: 250px;
-  background-color: white;
-  border: 1px solid black;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url('https://marketplace.canva.com/EAD7WY_6Ncs/1/0/1131w/canva-navy-blue-and-black-professional-resume-uLR8G4DSbAs.jpg');
-}
-.card2{
-  width: 250px;
-  height: 250px;
+.card {
+  margin: 20px;
+  width: 400px;
+  height: 390px;
   background-color: white;
   border: 1px solid black;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url('https://preview.redd.it/629lvulyubm71.jpg?width=640&height=805&crop=smart&auto=webp&s=043523e0739839170050d6d0d73780fd93072896');
-}
-.card3{
-  width: 250px;
-  height: 250px;
-  background-color: white;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 1px solid black;
-  background-image: url('https://i.pinimg.com/originals/9a/aa/34/9aaa34c530d13d6d92eb7366c519fbac.jpg');
 }
 
-.resume1{
+.resume1 {
   width: 500px;
   height: 500px;
-  border: 1px solid black
+  border: 1px solid black;
 }
-.resume1 .right{
+.resume1 .right {
   width: 30%;
   height: 100%;
   float: left;
-  background-color:  rgb(51, 51, 133);;
+  background-color: rgb(51, 51, 133);
 }
-.resume1 .details{
+.resume1 .details {
   width: 65%;
   height: 100%;
   padding-left: 10px;
   float: right;
   background-color: white;
+}
+
+/* preview */
+
+.previewcard {
+  width: 300px;
+  background-color: #0057b3b4;
+  height: 300px;
+  color: white;
+  margin: 10px;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.previewcard img {
+  width: 100px;
+}
+.previewcard h5 {
+  width: 100%;
+  text-align: left;
+  margin: 10px;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+.previewcard h1 span {
+  text-align: right;
+}
+
+.card-buttons{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: -20px 0 0 30px;
+
+}
+.delete-button{
+  color: red;
+  background-color: #cccccc;
+}
+.popup-container{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  background-color: #ccc;
+
+}
+@media only screen and (max-width: 768px) {
+  .login .left {
+    display: none;
+  }
+  .login .right {
+    width: 100%;
+  }
 }

@@ -14,9 +14,7 @@ import { PublicRouter } from "../src/Routers/PublicRouters";
 import { PrivateRouter } from "./Routers/PrivateRouters";
 import Otp from "./Page/Otp";
 import { useSelector } from "react-redux";
-import UserSlice from "./Redux/Store/Slice/UserSlice";
 import Add from "./Page/Add";
-import TemplateOne from "./Template/TemplateOne";
 const App = () => {
   const data = useSelector((state) => {
     return state.userData.islogin;
@@ -42,7 +40,6 @@ const App = () => {
         <>
           <Route path="/Add" element={<Add />} />
           <Route path="/Resume" element={<Resume />} />
-          <Route path="/templateone" element={<TemplateOne />} />
         </>
       )}
     </Routes>

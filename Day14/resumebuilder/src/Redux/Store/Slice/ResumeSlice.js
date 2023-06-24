@@ -5,26 +5,80 @@ const ResumeSlice = createSlice({
   initialState: {
     isLogin: false,
     phoneNumber: null,
-    submittedDetails:[],
+    submittedDetails: [],
     templates: null,
+    Draft: null,
   },
   reducers: {
-
-    AddTemplate(state, action) {
-      state.templates=action.payload;
+    addTemplate: (state, action) => {
+      state.templates = action.payload;
     },
-    addPhoneNumber(state, action) {
+    addPhoneNumber: (state, action) => {
       state.phoneNumber = action.payload;
     },
-    submitDetails(state, action) {
-      state.submittedDetails.push(action.payload.data)
+    submitDetails: (state, action) => {
+      const { id, data, template_id } = action.payload;
+      const existingDetails = state.submittedDetails.find(
+        (details) => details.id === id
+      );
+
+      if (existingDetails) {
+        existingDetails.templates.push({
+          template_id: template_id,
+          data: data,
+        });
+      } else {
+        state.submittedDetails.push({
+          id,
+          templates: [{ template_id: template_id, data: data }],
+        });
+      }
     },
-    delResume(state, action) {
-     state.submittedDetails = state.submittedDetails.filter((x, i)=> i!=action.payload)
+
+    setDraft: (state, action) => {
+      const { id, data } = action.payload;
+      const existingDetails = state.submittedDetails.find(
+        (details) => details.id === id
+      );
+
+      if (existingDetails) {
+        existingDetails.Draft.push({
+          data: data,
+        });
+      } else {
+        state.submittedDetails.push({
+          id,
+          data: [data],
+        });
+      }
+    },
+
+    deleteDetails: (state, action) => {
+      const { id, templateIndex } = action.payload;
+
+      state.submittedDetails = state.submittedDetails
+        .map((details) => {
+          if (details.id === id) {
+            if (details.templates?.length > templateIndex) {
+              details.templates.splice(templateIndex, 1);
+            }
+            if (details.templates?.length === 0) {
+              return null;
+            }
+          }
+          return details;
+        })
+        .filter(Boolean);
     },
   },
 });
 
-export const { addResume, addPhoneNumber, submitDetails, AddTemplate, Update ,delResume} =
-  ResumeSlice.actions;
+export const {
+  addTemplate,
+  addPhoneNumber,
+  submitDetails,
+  deleteDetails,
+  setDraft,
+} = ResumeSlice.actions;
+
 export default ResumeSlice.reducer;

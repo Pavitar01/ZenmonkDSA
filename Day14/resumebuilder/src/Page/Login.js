@@ -4,12 +4,14 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "../Css/All.css";
 import { addUser } from "../Redux/Store/Slice/UserSlice";
+
 const Login = () => {
   const [ph, setPh] = useState("");
   const [err, setErr] = useState("");
   const [val, setVal] = useState("/");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleChange = () => {
     if (!/^\d{10}$/.test(ph)) {
       setErr("Invalid phone number");
@@ -18,6 +20,7 @@ const Login = () => {
       setVal("/otp");
     }
   };
+
   return (
     <div className="login">
       <div className="left"></div>
