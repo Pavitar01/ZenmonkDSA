@@ -16,9 +16,7 @@ const Add = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [click, setClick] = useState(false);
   const dispatch = useDispatch();
-  const handleCardClick = (templateId) => {
-    setSelectedTemplate(templateId);
-  };
+ 
   const ph = useSelector((state) => state.resumeData.phoneNumber);
   const navigate = useNavigate();
 

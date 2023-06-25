@@ -41,13 +41,10 @@ const Card = () => {
       <div
         className="card"
         style={{ backgroundImage: `url('${img2}')` }}
-
         onClick={() => {
-          
           handleTemplateChange(3);
           dispatch(addTemplate(3));
           navigate("/Resume");
-
         }}
       ></div>
       <div

@@ -7,8 +7,9 @@ const ResumeSlice = createSlice({
     phoneNumber: null,
     submittedDetails: [],
     templates: null,
-    Draft: null,
+    Draft: []
   },
+  
   reducers: {
     addTemplate: (state, action) => {
       state.templates = action.payload;
@@ -34,25 +35,27 @@ const ResumeSlice = createSlice({
         });
       }
     },
-
     setDraft: (state, action) => {
-      const { id, data } = action.payload;
-      const existingDetails = state.submittedDetails.find(
+      const { id, templates } = action.payload;
+      const existingDetails = state.Draft.find(
         (details) => details.id === id
       );
-
+    
       if (existingDetails) {
-        existingDetails.Draft.push({
-          data: data,
-        });
+        if (existingDetails) {
+          existingDetails.Draft.push(templates);
+        } else {
+          existingDetails.Draft = [templates];
+        }
       } else {
-        state.submittedDetails.push({
+        state.Draft.push({
           id,
-          data: [data],
+          Draft: [templates],
         });
       }
     },
-
+    
+    
     deleteDetails: (state, action) => {
       const { id, templateIndex } = action.payload;
 

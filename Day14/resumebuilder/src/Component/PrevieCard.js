@@ -34,7 +34,6 @@ const PrevieCard = ({ details, popUp, id }) => {
         PhoneNumber: <span>{PhoneNumber}</span>
       </h5>
       <h5>
-        {" "}
         Experience: <span> {experience}</span>
       </h5>
       More...

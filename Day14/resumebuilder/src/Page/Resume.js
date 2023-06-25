@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { submitDetails } from "../Redux/Store/Slice/ResumeSlice";
+import { submitDetails, setDraft } from "../Redux/Store/Slice/ResumeSlice";
 import One from "../Template/One";
 import Two from "../Template/Two";
 import Three from "../Template/Three";
+import { DraftPopup } from "../Component/Draft";
+import AllDrafts from "../Component/AllDrafts";
 
 const Resume = () => {
   const temp = useSelector((state) => state.resumeData.templates);
@@ -19,11 +21,12 @@ const Resume = () => {
   const [Project, setProject] = useState("");
   const [Exp, setExp] = useState("");
   const [err, setErr] = useState("");
+  const [allDraft, setAllDraft] = useState(false);
+  const [drafts, setDrafts] = useState([]);
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberError, setPhoneNumberError] = useState("");
   const [previewMode, setPreviewMode] = useState(false);
   const [isDraftPopupOpen, setIsDraftPopupOpen] = useState(false);
-  const [drafts, setDrafts] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -100,49 +103,27 @@ const Resume = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const saveDraft = () => {
     const draftData = {
-      template: selectedTemplate,
-      name: Name,
-      address: Address,
-      designation: Designation,
-      experience: Exp,
-      objective: Objective,
-      project: Project,
-      skill: Skill,
-      social: social,
-      image: image,
-      phoneNumber: PhoneNumber,
+      id: ph,
+      templates: {
+        template: selectedTemplate,
+        name: Name,
+        address: Address,
+        designation: Designation,
+        experience: Exp,
+        objective: Objective,
+        project: Project,
+        skill: Skill,
+        social: social,
+        image: image,
+        phoneNumber: PhoneNumber,
+      },
     };
 
-    setDrafts([...drafts, draftData]);
-
-    
-
+    dispatch(setDraft(draftData));
     setIsDraftPopupOpen(false);
-  };
-
-  const DraftPopup = () => {
-    return (
-      <div className="draft-popup">
-        <h2>Drafts</h2>
-        {drafts.map((draft, index) => (
-          <div key={index} className="draft-item">
-            {draft.template === 1 && <One details={draft} />}
-            {draft.template === 2 && <Two details={draft} />}
-            {draft.template === 3 && <Three details={draft} />}
-            <button
-              onClick={() => setDrafts(drafts.filter((_, i) => i !== index))}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-        <button onClick={() => setIsDraftPopupOpen(false)}>Close</button>
-        <button onClick={saveDraft}>Save Draft</button>
-      </div>
-    );
+    console.log(draftData)
   };
 
   return (
@@ -297,13 +278,21 @@ const Resume = () => {
           )}
           <button onClick={() => setPreviewMode(false)}>Edit</button>
           <button onClick={() => handleTemplateChange(1)}>Resume1</button>
-          <button onClick={() => handleTemplateChange(2)}>Resume2</button> 
-          <button onClick={() => handleTemplateChange(3)}>Resume3</button> 
+          <button onClick={() => handleTemplateChange(2)}>Resume2</button>
+          <button onClick={() => handleTemplateChange(3)}>Resume3</button>
         </div>
-        
       )}
-
-      {isDraftPopupOpen && <DraftPopup />}
+{
+  !allDraft && <AllDrafts/>
+}
+      {isDraftPopupOpen && (
+        <DraftPopup
+          drafts={drafts}
+          setDrafts={setDrafts}
+          setIsDraftPopupOpen={setIsDraftPopupOpen}
+          saveDraft={saveDraft}
+        />
+      )}
     </div>
   );
 };
