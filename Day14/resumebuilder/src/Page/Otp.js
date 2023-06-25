@@ -10,18 +10,16 @@ const Otp = () => {
   const [err, setErr] = useState("");
   const [val, setVal] = useState("");
   const dispatch = useDispatch();
-  const ph=useSelector((state)=>{
-    return state.userData.data
-  })
+  const ph = useSelector((state) => {
+    return state.userData.data;
+  });
   const env = process.env.REACT_APP_OTP;
   const checkOtp = () => {
-
- 
     if (otp === "") {
       setErr("Please Fill This Feild");
     } else if (env === otp) {
       setVal("/Add");
-      dispatch(addPhoneNumber(ph))
+      dispatch(addPhoneNumber(ph));
       dispatch(userOtp());
     } else {
       setErr("Invalid OTP");
@@ -40,9 +38,11 @@ const Otp = () => {
           renderInput={(props) => <input {...props} />}
           className="otpwindow"
         />
-        <button className="otpbtn" onClick={checkOtp}>
-          <Link to={val} style={{textDecoration:"none"}}>Confirm</Link>
-        </button>
+        <Link to={val} style={{ textDecoration: "none" }}>
+          <button className="otpbtn" onClick={checkOtp} style={{height:"50px"}}>
+            Confirm
+          </button>
+        </Link>
         <p>{err}</p>
       </div>
     </div>

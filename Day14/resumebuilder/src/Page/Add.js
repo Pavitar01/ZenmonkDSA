@@ -16,7 +16,7 @@ const Add = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [click, setClick] = useState(false);
   const dispatch = useDispatch();
- 
+
   const ph = useSelector((state) => state.resumeData.phoneNumber);
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const Add = () => {
     <>
       <div className="addResume">
         <div className="add">
-        <h1 style={{textAlign:"center",padding:"10px"}}>Home Page</h1>
+          <h1 style={{ textAlign: "center", padding: "10px" }}>Home Page</h1>
 
           <div className="grid">
             {submittedDetails.map((detail) => {
@@ -77,7 +77,7 @@ const Add = () => {
                     <div className="card-buttons">
                       <button
                         className="delete-button"
-                        style={{backgroundColor:"transparent"}}
+                        style={{ backgroundColor: "transparent" }}
                         onClick={() => del(id, index)}
                       >
                         &#128465;

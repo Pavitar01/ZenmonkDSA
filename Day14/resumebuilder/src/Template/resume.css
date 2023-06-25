@@ -38,7 +38,7 @@
 .main .left{
     width: 30%;
     height: 100%;
-    background-color: navy;
+    background-color: #165397;
     display: flex;
     align-items: center;
     flex-direction: column;

@@ -99,21 +99,26 @@
   margin: 20px;
   flex-direction: column;
   margin: -6px auto;
+  background-color: white;
 }
 
 .input {
-  width: 400px;
+  background-color: #c4cad18e;
+  width: 600px;
   margin-bottom: 20px;
+  justify-content: space-evenly;
+  padding: 20px;
 }
 
 .input h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: #165397;
 }
 
 .input input,
 .input textarea {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -126,7 +131,7 @@ button {
   margin-right: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #165397;
   color: #fff;
   cursor: pointer;
 }
@@ -176,7 +181,7 @@ button:hover {
   border-radius: 100%;
   cursor: pointer;
   width: 50px;
-  background-color: blue;
+  background-color: #165397;
   transition: 0.3s ease-in-out;
 }
 .add button:hover {
@@ -184,11 +189,17 @@ button:hover {
   color: white;
 }
 .preview {
-  width: 500px;
-  height: 700px;
+  width: 600px;
+  height: 710px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   position: absolute;
   top: 5px;
   background-color: white;
+  padding: 20px;
 }
 
 /* template */
@@ -231,7 +242,7 @@ button:hover {
   border: 1px solid black;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url('https://digiandme.com/wp-content/uploads/2021/07/digital-marketing-resume-3-1086x1536.jpg');
+  background-image: url("https://digiandme.com/wp-content/uploads/2021/07/digital-marketing-resume-3-1086x1536.jpg");
 }
 
 .resume1 {
@@ -285,18 +296,17 @@ button:hover {
   text-align: right;
 }
 
-.card-buttons{
+.card-buttons {
   position: absolute;
   width: 100px;
   height: 100px;
   margin: -20px 0 0 30px;
-
 }
-.delete-button{
+.delete-button {
   color: red;
   background-color: #cccccc;
 }
-.popup-container{
+.popup-container {
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -304,7 +314,43 @@ button:hover {
   justify-content: center;
   top: 0;
   background-color: #ccc;
+}
+/* AllSavedDraft */
+.AllSavedDraft {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  overflow: hidden;
+  padding: 20px;
+}
+.AllSavedDraft .top {
+  margin: 10px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  text-align: center;
+}
+.top button {
+  width: 150px;
+  height: 50px;
+}
 
+.draftsCard {
+  width: 100%;
+  height: calc(100vh - 30px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.over {
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+  margin-right: 500px;
 }
 @media only screen and (max-width: 768px) {
   .login .left {

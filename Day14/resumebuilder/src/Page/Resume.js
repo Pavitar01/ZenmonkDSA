@@ -7,7 +7,7 @@ import Two from "../Template/Two";
 import Three from "../Template/Three";
 import { DraftPopup } from "../Component/Draft";
 import AllDrafts from "../Component/AllDrafts";
-
+import formbg from "../Assets/images/bg1.jpg";
 const Resume = () => {
   const temp = useSelector((state) => state.resumeData.templates);
   const [selectedTemplate, setSelectedTemplate] = useState(temp);
@@ -123,11 +123,24 @@ const Resume = () => {
 
     dispatch(setDraft(draftData));
     setIsDraftPopupOpen(false);
-    console.log(draftData)
+    console.log(draftData);
+  };
+  const handleCardClick = (cardData) => {
+    setSelectedTemplate(cardData.template);
+    setName(cardData.name);
+    setAddress(cardData.address);
+    setDesignation(cardData.designation);
+    setExp(cardData.experience);
+    setObjective(cardData.objective);
+    setProject(cardData.project);
+    setSkill(cardData.skill);
+    setSocial(cardData.social);
+    setImage(cardData.image);
+    setPhoneNumber(cardData.phoneNumber);
   };
 
   return (
-    <div className="resume">
+    <div className="resume" style={{ backgroundImage: `url(${formbg})` }}>
       <div className="input">
         <h1>Details</h1>
         <input
@@ -210,17 +223,28 @@ const Resume = () => {
           placeholder="Project"
         ></textarea>
 
-        <button onClick={() => navigate("/Add")}>Back</button>
-        <button onClick={submit}>Submit</button>
-        <button onClick={reset}>Reset</button>
-        <button
-          onClick={() => {
-            setPreviewMode(true);
-          }}
-        >
-          Preview
-        </button>
-        <button onClick={() => setIsDraftPopupOpen(true)}>Draft</button>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          {" "}
+          <button onClick={() => navigate("/Add")}>Back</button>
+          <button onClick={submit}>Submit</button>
+          <button onClick={reset}>Reset</button>
+          <button
+            onClick={() => {
+              setPreviewMode(true);
+            }}
+          >
+            Preview
+          </button>
+          <button
+            onClick={() => {
+              isDraftPopupOpen
+                ? setIsDraftPopupOpen(false)
+                : setIsDraftPopupOpen(true);
+            }}
+          >
+            {isDraftPopupOpen ? "Close" : "More"}
+          </button>
+        </div>
       </div>
 
       <p style={{ marginTop: "-15px" }}>{err}</p>
@@ -276,21 +300,22 @@ const Resume = () => {
               }}
             />
           )}
-          <button onClick={() => setPreviewMode(false)}>Edit</button>
+       <div>   <button onClick={() => setPreviewMode(false)}>Edit</button>
           <button onClick={() => handleTemplateChange(1)}>Resume1</button>
           <button onClick={() => handleTemplateChange(2)}>Resume2</button>
-          <button onClick={() => handleTemplateChange(3)}>Resume3</button>
+          <button onClick={() => handleTemplateChange(3)}>Resume3</button></div>
         </div>
       )}
-{
-  !allDraft && <AllDrafts/>
-}
+      {allDraft && <AllDrafts setAllDraft={setAllDraft} allDraft={allDraft}  handleCardClick={handleCardClick}/>}
       {isDraftPopupOpen && (
         <DraftPopup
           drafts={drafts}
           setDrafts={setDrafts}
           setIsDraftPopupOpen={setIsDraftPopupOpen}
           saveDraft={saveDraft}
+          allDraft={allDraft}
+          setAllDraft={setAllDraft}
+          isDraftPopupOpen={isDraftPopupOpen}
         />
       )}
     </div>

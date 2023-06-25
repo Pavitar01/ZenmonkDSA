@@ -40,11 +40,12 @@ const Login = () => {
           <p style={{ width: "100%", textAlign: "center", color: "red" }}>
             {err}
           </p>
-          <button>
-            <Link to={val} onClick={handleChange}>
+          <Link to={val} onClick={handleChange}>  <button>
+          
               Send Otp
-            </Link>
           </button>
+          </Link>
+
         </div>
         <Outlet />
       </div>
