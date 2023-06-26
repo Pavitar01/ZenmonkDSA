@@ -1,6 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import {getAuth,GoogleAuthProvider} from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyC_tV3rm3-xW30LSdAu7HZforZ6koecivs",
@@ -12,7 +10,4 @@ const firebaseConfig = {
   measurementId: "G-XM55SNP2N1"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth=getAuth(app)
-const provider=new GoogleAuthProvider();
-export {auth,provider}
+export const app = initializeApp(firebaseConfig);

@@ -14,17 +14,16 @@
 .Main {
   width: 80%;
   height: 800px;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow-y: hidden;
-  min-width: 800px;
+  min-width: 1147px;
   box-shadow: 1px 1px 50px 15px #3b3e997c;
-
 }
 .Main .left {
   width: 30%;
   height: 100%;
   float: left;
-  background-color: #3b3e99;
+  background-color: #3a3e98;
 }
 .Main .right {
   width: 70%;
@@ -36,10 +35,11 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  margin: 10px;
 }
 .top .input {
   width: 200px;
-  height: 25px;
+  height: 30px;
   border-radius: 10px;
   border: none;
   background-color: #ededfa;
@@ -72,7 +72,8 @@
   height: 50px;
   text-align: center;
   justify-content: space-between;
-  gap: 70px;
+  margin-top: 10px;
+  gap: 100px;
 }
 .logo .button {
   background-color: transparent;
@@ -83,7 +84,6 @@
 }
 .logo .button i {
   color: rgba(167, 160, 160, 0.826);
-
   font-size: 20px;
 }
 .logo .logoIcon {
@@ -96,7 +96,7 @@
 
 .users {
   padding-top: 30px;
-  width: 100%;
+  width: 105%;
   height: calc(100% - 50px);
   overflow-y: scroll;
 }
@@ -114,11 +114,11 @@
   margin-top: 20px;
   position: relative;
 }
-.UserFeild .img {
+.UserFeild .image {
   width: 15%;
   height: 100%;
 }
-.img img {
+.image img {
   width: 60%;
   height: 40px;
   border-radius: 100%;
@@ -177,59 +177,138 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
-.messageFeild button{
-    border: none;
-    background-color: transparent;
-    font-size: 20px;
-    color: rgba(167, 160, 160, 0.529);
-    margin-top: -5px;
-    cursor: pointer;
-}
-.messageFeild .inputBox {
-  width: 70%;
-  height: 50%;
-  border-radius: 20px;
-  background-color: #ededfa;
-}
-.inputBox input {
+.messageFeild .bg {
   width: 80%;
-  height: 100%;
+  height: 60px;
   border: none;
-  background-color: transparent;
-  padding: 10px;
+  border-radius: 50px;
+  margin-bottom: 20px;
   box-sizing: border-box;
+  background-color: #ededfb;
+  overflow: hidden;
 }
-input:focus {
-  outline: none;
-}
-.inputBox i {
-  width: 18%;
+.react-input-emoji--input {
+  width: 100%;
+  height: 30px;
   font-size: 20px;
-  text-align: right;
-  color: rgba(167, 160, 160, 0.529);
+  background-color: #ededfb;
+}
+.messageFeild .button{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  color: rgba(185, 177, 177, 0.438);
+  background-color: transparent;
+  margin-bottom: 20px;
+  border: none;
   cursor: pointer;
 }
-
 /* logout credentials */
 
-.details{
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    right: 0;
-    background-color: #d7d8f1;
-    left: 50%;
+.details {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  right: 0;
+  background-color: #d7d8f1;
+  left: 50%;
+  border-radius: 20px;
+
 }
-.details .outerdiv{
-    width: 100%;
-    height: 100%;
-    position: relative;
+.details .outerdiv {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  
 }
 
-.userDetails{
-    width: 100%;
-    height: 80%;
+.userDetails {
+  width: 100%;
+  height: 80%;
+  text-align: center;
+}
+
+.userDetails .img{
+  height: 50px ;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  margin-top:10px;
+ 
+}
+.img img{
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  border-radius: 100%;
+  border: 1px solid beige;
+}
+.userDetails h1{
+  width: 100%;
+  font-weight: 100;
+  color:#3b3e99;
 }
 
 /* media */
+/* messages */
+
+.message1 {
+  margin-top: 10px;
+  width: 100%;
+  float: right;
+  font-size: 17px;
+}
+/* my message feild */
+.message1 .m1 {
+  float: right;
+  display: flex;
+  overflow: hidden;
+  word-break: break-all;
+}
+.m1 img {
+  float: right;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 100%;
+  margin-top: 50px;
+}
+
+.m1 p {
+  width: 400px;
+  box-sizing: border-box;
+  background-color: #f1f1fc;
+  padding: 30px;
+  border-radius: 10px;
+}
+/* other message feild */
+.message2 {
+  width: 100%;
+  height: 70px;
+  font-size: 17px;
+  color: white;
+}
+.message2 .m2 {
+  float: left;
+  display: flex;
+  overflow: hidden;
+  word-break: break-all;
+}
+.m2 img {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 100%;
+  margin-top: 50px;
+}
+
+.m2 p {
+  width: 400px;
+  box-sizing: border-box;
+  background-color: #999ad7;
+  padding: 30px;
+  border-radius: 10px;
+}

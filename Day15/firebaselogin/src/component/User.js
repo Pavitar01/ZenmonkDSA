@@ -19,7 +19,8 @@ const User = () => {
               // transform={isActive == index ? "scale(2, 0.5);" : ""}
               name={i.name}
               url={i.logo}
-              time={i.time}
+              time={isActive == index ? "Now" : i.time}
+              
               text={i.text}
         
             />

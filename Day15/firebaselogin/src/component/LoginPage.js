@@ -1,33 +1,38 @@
 import React, { useState, useEffect } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
-import { auth, provider } from "../firebase/firebase";
-import { signInWithPopup } from "firebase/auth";
 import Home from "./Home";
+import { app } from "../firebase/firebase";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopu,
+  onAuthStateChanged,
+  signInWithPopup,
+} from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { AddUser } from "../Redux/Slice/UserSlice";
 const LoginPage = () => {
   const [islogin, setIslogin] = useState(true);
-  const [Auth, setAuth] = useState(false);
   const [val, setVal] = useState("");
-  const [user, setUser] = useState(null);
-  const data = useSelector((state) => {
+  const [user, setUser] = useState(false);
+  
+  const dispatch = useDispatch();
+  const d = useSelector((state) => {
     return state.userData.user;
   });
   useEffect(() => {
-    setUser(data);
-  }, []);
-  const dispatch = useDispatch();
-  const googleSignIn = async () => {
-    try {
-      await signInWithPopup(auth, provider).then((data) => {
-        dispatch(AddUser(data.user));
-        console.log(data.user);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    onAuthStateChanged(auth, (data) => {
+      dispatch(AddUser(data));
+      setUser(data);
+    });
+  },[]);
+  const auth = getAuth(app);
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
   };
+
   return (
     <>
       {user ? (

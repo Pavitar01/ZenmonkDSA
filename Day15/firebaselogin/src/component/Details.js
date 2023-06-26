@@ -1,13 +1,39 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { app } from "../firebase/firebase";
+import { signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 const Details = () => {
-  return (
-    <div className='details'>
-    <div className='outerdiv'>
-    <div className='userDetails'>UserPic</div>
-    <div className='logout'><button>Logout<i class="fa-solid fa-right-from-bracket"></i></button></div>
-    </div>
-    </div>
-  )
-}
+const [img,setImg]=useState("https://s3.amazonaws.com/thinkific-import/284749/3JzokDFKQ66wIF2stcSw_Alec_cuence_reviews_tiktok_workshops_png.png")
 
-export default Details
+  const data = useSelector((state) => {
+    return state.userData.user;
+    
+  });
+  console.log(data[0].displayName);
+  const auth = getAuth(app);
+  return (
+    <div className="details">
+      <div className="outerdiv">
+        <div className="userDetails">
+          <div className="img">
+          <img src={img} alt="no image" />: 
+         {/* {
+          data.photoUrl ?     <img src={data[0].photoURL} alt="no image" />
+         } */}
+          </div>
+          <h1>{data[0].displayName}</h1>
+          <p>{data[0].email}</p>
+        </div>
+        <div className="logout">
+           
+            <i class="fa-solid fa-right-from-bracket" style={{fontSize:"40px",float:"right",color:"gray",cursor:"pointer"}}  onClick={() => {
+              signOut(auth);
+            }}></i>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Details;
