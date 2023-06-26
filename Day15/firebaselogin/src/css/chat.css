@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap");
+
+.chatMain {
+  width: 100%;
+  height: 100vh;
+  background-color: #d7d8f1;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  justify-content: center;
+  scroll-behavior: smooth;
+}
+
+.Main {
+  width: 80%;
+  height: 800px;
+  border-radius: 20px;
+  overflow-y: hidden;
+  box-shadow: 1px 1px 50px 15px #3b3e997c;
+
+}
+.Main .left {
+  width: 30%;
+  height: 100%;
+  float: left;
+  background-color: #3b3e99;
+}
+.Main .right {
+  width: 70%;
+  height: 100%;
+  float: right;
+  background-color: #ffffff;
+}
+.right .top {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.top .input {
+  width: 200px;
+  height: 25px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ededfa;
+  overflow: hidden;
+}
+
+.input .search {
+  width: 80%;
+  height: 90%;
+  background: transparent;
+  border: none;
+  padding: 5px;
+}
+
+.search:focus {
+  outline: none;
+}
+.top button {
+  background-color: transparent;
+  border: none;
+}
+.top button i {
+  color: rgba(167, 160, 160, 0.529);
+  font-size: 20px;
+  cursor: pointer;
+}
+/* left logo */
+.logo {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  justify-content: space-between;
+  gap: 70px;
+}
+.logo .button {
+  background-color: transparent;
+  margin-top: 10px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+.logo .button i {
+  color: rgba(167, 160, 160, 0.826);
+
+  font-size: 20px;
+}
+.logo .logoIcon {
+  width: 120px;
+  border: 1px solid #3b3e99;
+  position: relative;
+  margin-top: -10px;
+}
+/* user feild */
+
+.users {
+  padding-top: 30px;
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow-y: scroll;
+}
+.users::-webkit-scrollbar {
+  width: 22px;
+}
+.mainfeild {
+  width: 100%;
+  padding-left: 10px;
+}
+.UserFeild {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  margin-top: 20px;
+  position: relative;
+}
+.UserFeild .img {
+  width: 15%;
+  height: 100%;
+}
+.img img {
+  width: 60%;
+  height: 40px;
+  border-radius: 100%;
+  border: 1px solid #3b3e99;
+}
+.middle {
+  width: 70%;
+}
+.middle .name {
+  width: 80%;
+  height: 40%;
+  text-align: left;
+  font-size: 14px;
+  color: white;
+}
+.middle .lastText {
+  width: 80%;
+  height: 40%;
+  text-align: left;
+  overflow: hidden;
+  word-break: break-all;
+  color: rgba(255, 255, 255, 0.555);
+  font-size: 14px;
+}
+.time {
+  float: right;
+  height: 30px;
+  text-align: right;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.time span {
+  width: 20px;
+  background-color: #474992;
+  padding: 5px;
+  font-size: 10px;
+  border-radius: 20px;
+  color: rgba(234, 231, 231, 0.608);
+}
+
+/* messgaes */
+.messages {
+  width: 100%;
+  height: 78%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.messages::-webkit-scrollbar {
+  width: 0%;
+}
+.messageFeild {
+  width: 100%;
+  height: 14%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messageFeild button{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: rgba(167, 160, 160, 0.529);
+    margin-top: -5px;
+    cursor: pointer;
+}
+.messageFeild .inputBox {
+  width: 70%;
+  height: 50%;
+  border-radius: 20px;
+  background-color: #ededfa;
+}
+.inputBox input {
+  width: 80%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+}
+input:focus {
+  outline: none;
+}
+.inputBox i {
+  width: 18%;
+  font-size: 20px;
+  text-align: right;
+  color: rgba(167, 160, 160, 0.529);
+  cursor: pointer;
+}
+
+/* logout credentials */
+
+.details{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    background-color: #d7d8f1;
+    left: 50%;
+}
+.details .outerdiv{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.userDetails{
+    width: 100%;
+    height: 80%;
+}
