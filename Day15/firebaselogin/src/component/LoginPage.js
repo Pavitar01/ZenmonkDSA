@@ -12,25 +12,54 @@ import {
 } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { AddUser } from "../Redux/Slice/UserSlice";
+import { async } from "react-input-emoji";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  orderBy,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
 const LoginPage = () => {
+  const db = getFirestore(app);
+
   const [islogin, setIslogin] = useState(true);
   const [val, setVal] = useState("");
   const [user, setUser] = useState(false);
-  
+
   const dispatch = useDispatch();
-  const d = useSelector((state) => {
-    return state.userData.user;
-  });
+
   useEffect(() => {
     onAuthStateChanged(auth, (data) => {
       dispatch(AddUser(data));
       setUser(data);
+      console.log(user);
     });
-  },[]);
+  }, []);
   const auth = getAuth(app);
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+
+    signInWithPopup(auth, provider).then(async (res) => {
+      const user = res.user;
+      const q1 = query(collection(db, "User"), where("uid", "==", user.uid));
+      const querysnap = await getDocs(q1);
+      try {
+        if (querysnap.empty) {
+          await addDoc(collection(db, "User"), {
+            name: user.displayName,
+            uid: user.uid,
+            url: user.photoURL,
+            createdAt: serverTimestamp(),
+          });
+        }
+      } catch (err) {
+        console.log("already exits");
+      }
+    });
   };
 
   return (

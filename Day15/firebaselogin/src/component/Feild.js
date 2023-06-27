@@ -8,7 +8,7 @@ const Feild = ({ time, url, name, text,isActive,color,transform,padding}) => {
       </div>
       <div className="middle">
         <div className="name">{name}</div>
-        <div className="lastText">{text}</div>
+        <div className="lastText">{}</div>
       </div>
       <div className="time">{
         time==="Now" ?<span style={{backgroundColor:"white",width:"50px",color:"crimson",textAlign:"center"}}>{time}</span>:<span>{time}</span>

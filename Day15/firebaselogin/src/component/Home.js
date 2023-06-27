@@ -11,41 +11,54 @@ import {
   collection,
   serverTimestamp,
   onSnapshot,
-  query,orderBy
+  query,
+  orderBy,
+  where,
+  getDoc,
+  getDocs,
 } from "firebase/firestore"; //firstore
 import { app } from "../firebase/firebase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ConvoButton from "./ConvoButton";
 
 const Home = () => {
   const [toggle, isToggle] = useState(false);
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
-  const db = getFirestore(app);
-  const q=query(collection(db,"messages"),orderBy("createdAt","asc"))
+  const [val, setVal] = useState();
+  const [startcConvo, setStartConvo] = useState(false);
 
+ 
+  const data = useSelector((state) => {
+    return state.userData.user;
+  });
+
+
+  const db = getFirestore(app);
+
+  const q = query(collection(db, "messages"), orderBy("createdAt", "asc"));
 
   const handleOnEnter = async (text) => {
     try {
       await addDoc(collection(db, "messages"), {
         messages: text,
-        uid: data[0].uid,
-        url: data[0].photoURL,
+        uid: data.uid,
+        url: data.photoURL,
         createdAt: serverTimestamp(),
       });
     } catch (err) {
       alert(err);
     }
   };
-  const data = useSelector((state) => {
-    return state.userData.user;
-  });
+
   useEffect(() => {
     const onsub = onSnapshot(q, (snapshot) => {
-      setMessages(snapshot.docs.map((i) => {
-        const id = i.id;
-        return { id, ...i.data()}
-      })
-      )
+      setMessages(
+        snapshot.docs.map((i) => {
+          const id = i.id;
+          return { id, ...i.data() };
+        })
+      );
     });
 
     return () => {
@@ -56,9 +69,9 @@ const Home = () => {
   const submit = async () => {
     try {
       await addDoc(collection(db, "messages"), {
-        messages: "hello",
-        uid: data[0].uid,
-        url: data[0].photoURL,
+        messages: text,
+        uid: data.uid,
+        url: data.photoURL,
         createdAt: serverTimestamp(),
       });
     } catch (err) {
@@ -101,14 +114,21 @@ const Home = () => {
             {toggle ? <Details /> : <></>}
           </div>
           <div className="messages">
-            {messages.map((item) => (
-              <Message
-                key={item.id}
-                message={item.message}
-                url={item.url}
-                user={item.uid === data[0].uid ? "me" : "other"}
+            {startcConvo ? (
+              messages.map((item) => (
+                <Message
+                  key={item.id}
+                  message={item.messages}
+                  url={item.url}
+                  user={item.uid === data.uid ? "me" : "other"}
+                />
+              ))
+            ) : (
+              <ConvoButton
+                setStartConvo={setStartConvo}
+                startcConvo={startcConvo}
               />
-            ))}
+            )}
           </div>
           <div className="messageFeild">
             <div className="bg">
@@ -121,7 +141,7 @@ const Home = () => {
                 placeholder="Type a message"
               />
             </div>
-            <button className="button" onClick={submit}>
+            <button className="button" onClick={submit} disabled={!startcConvo}>
               Send
             </button>
           </div>
