@@ -45,14 +45,14 @@ const LoginPage = () => {
 
     signInWithPopup(auth, provider).then(async (res) => {
       const user = res.user;
-      const q1 = query(collection(db, "User"), where("uid", "==", user.uid));
+      const q1 = query(collection(db, "User"), where("uid", "==", user?.uid));
       const querysnap = await getDocs(q1);
       try {
         if (querysnap.empty) {
           await addDoc(collection(db, "User"), {
-            name: user.displayName,
-            uid: user.uid,
-            url: user.photoURL,
+            name: user?.displayName,
+            uid: user?.uid,
+            url: user?.photoURL,
             createdAt: serverTimestamp(),
           });
         }

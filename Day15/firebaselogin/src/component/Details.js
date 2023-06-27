@@ -11,21 +11,20 @@ const Details = () => {
   const data = useSelector((state) => {
     return state.userData.user;
   });
-  // console.log(data[0].displayName);
   const auth = getAuth(app);
   return (
     <div className="details">
       <div className="outerdiv">
         <div className="userDetails">
           <div className="img">
-            {data.photoUrl ? (
+            {data?.photoUrl ? (
               <img src={img} alt="no image" />
             ) : (
-              <img src={data.photoURL} alt="no image" />
+              <img src={data?.photoURL} alt="no image" />
             )}
           </div>
-          <h1>{data.displayName}</h1>
-          <p>{data.email}</p>
+          <h1>{data?.displayName}</h1>
+          <p>{data?.email}</p>
         </div>
         <div className="logout">
           <i
@@ -37,7 +36,9 @@ const Details = () => {
               cursor: "pointer",
             }}
             onClick={() => {
-              signOut(auth);
+              if (data && data.uid) {
+                signOut(auth);
+              }
             }}
           ></i>
         </div>

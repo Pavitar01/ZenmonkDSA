@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { data } from "../DummyData/data";
 import Feild from "./Feild";
 import {
   collection,
@@ -10,70 +9,65 @@ import {
 } from "firebase/firestore";
 import { app } from "../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { AddReceiver, SetRoom } from "../Redux/Slice/UserSlice";
+import { SetRoom } from "../Redux/Slice/UserSlice";
 
 const User = () => {
-  const currentReceiver = useSelector((state) => {
-    return state.userData.Receiver;
-  });
-
-  const d = useSelector((state) => {
-    return state.userData.user;
-  });
+  const currentUser = useSelector((state) => state.userData.user);
   const db = getFirestore(app);
-  const [user, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const q = query(collection(db, "User"), orderBy("createdAt", "asc"));
 
-  const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState();
-  const setActive = (i) => {
-    setIsActive(i);
-  };
-  const s = useSelector((state) => {
-    return state.userData.RoomId;
-  });
   useEffect(() => {
-    const onsub = onSnapshot(q, (snapshot) => {
+    const sub = onSnapshot(q, (snapshot) => {
       setUsers(
-        snapshot.docs.map((i) => {
-          const id = i.id;
-          return { id, ...i.data() };
-        })
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
       );
     });
 
     return () => {
-      onsub();
+      sub();
     };
   }, []);
 
+  const handleUserClick = (index, userId) => {
+    setActiveIndex(index);
+    const roomId = generateRoomId(currentUser?.uid, userId);
+    dispatch(SetRoom({ sid: currentUser?.uid, rid: userId, roomId }));
+  };
+
+  const generateRoomId = (uid1, uid2) => {
+    const sortedUids = [uid1, uid2].sort();
+    return sortedUids.join("_");
+  };
+
   return (
     <div className="mainfeild">
-      {user.map((i, index) => {
-        return (
-          <div
-            onClick={() => {
-              setActive(index);
-              dispatch(SetRoom({ sid: d.uid, rid: i.uid }));
-            }}
-            style={{ cursor: "pointer" }}
-            key={index}
-          >
-            {i.uid != d.uid ? (
+      {users?.map((user, index) => {
+        if (user?.uid !== currentUser?.uid) {
+          const isActive = index === activeIndex;
+          return (
+            <div
+              key={user?.id}
+              onClick={() => handleUserClick(index, user.uid)}
+              style={{ cursor: "pointer" }}
+            >
               <Feild
-                color={isActive == index ? "#f23f79" : ""}
-                width={isActive == index ? "800px" : ""}
-                padding={isActive == index ? "10px" : ""}
-                // transform={isActive == index ? "scale(2, 0.5);" : ""}
-                name={i.name}
-                url={i.url}
-                time={isActive == index ? "Now" : i.time}
+                color={isActive ? "#f23f79" : ""}
+                width={isActive ? "800px" : ""}
+                padding={isActive ? "10px" : ""}
+                name={user?.name}
+                url={user?.url}
+                time={isActive ? "Now" : user.time}
                 text={"hello"}
               />
-            ) : null}
-          </div>
-        );
+            </div>
+          );
+        } else {
+          return null;
+        }
       })}
     </div>
   );

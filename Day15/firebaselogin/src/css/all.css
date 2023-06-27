@@ -5,14 +5,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #21a957;
+  background-color: #3b3e997c;
 }
 
 .login {
   width: 500px;
   height: 500px;
   border-radius: 20px;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid black;
 
 }
@@ -61,12 +61,13 @@ input ::placeholder{
 }
 .input button{
     height: 50px;
-    font-size: 20px;
-    background-color: #21a957;
+    background-color: #3b3e997c;
     color: white;
     cursor: pointer;
     border: none;
     border-radius:8px;
+    color: black;
+    font-size: 25px;
 }
  .gbutton{
     margin: 10px 0 0 130px;
@@ -105,7 +106,7 @@ input ::placeholder{
 .signup button{
     height: 50px;
     font-size: 20px;
-    background-color: #21a957;
+    background-color: #3b3e997c;
     color: white;
     cursor: pointer;
     border: none;
