@@ -14,7 +14,6 @@ import {
   onSnapshot,
   query,
   orderBy,
-  where,
 } from "firebase/firestore";
 import { app } from "../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -150,7 +149,7 @@ const Home = () => {
                 startcConvo={startConvo}
               />
             )}
-            <div ref={messagesEndRef} /> {/* This empty div is used for auto-scrolling */}
+            <div ref={messagesEndRef}></div> {/* This empty div is used for auto-scrolling */}
           </div>
           <div className="messageFeild">
             <div className="bg">
