@@ -13,7 +13,7 @@ const Login = () => {
 
 
   if (email === "" || pass === "") {
-    setError("Please Fill the Fld");
+    setError("Please Fill the Feild");
   }  else {
     try {
       const user = await signInWithEmailAndPassword(auth,email,pass);
@@ -36,7 +36,8 @@ const Login = () => {
             <input type="password" placeholder="Password.." onChange={(e)=>setPass(e.target.value)}/>
             <button onClick={login}>Login</button>
           </div>
-          <p>{err}</p>
+          <p style={{color:"red",width:"100%",textAlign:"center"}}>{err}</p>
+
     </div>
   )
 }

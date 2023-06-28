@@ -16,11 +16,14 @@ import { async } from "react-input-emoji";
 import {
   addDoc,
   collection,
+  doc,
   getDocs,
   getFirestore,
+  onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
   where,
 } from "firebase/firestore";
 const LoginPage = () => {
@@ -28,6 +31,7 @@ const LoginPage = () => {
 
   const [islogin, setIslogin] = useState(true);
   const [val, setVal] = useState("");
+  const [val2, setVal2] = useState([]);
   const [user, setUser] = useState(false);
 
   const dispatch = useDispatch();
@@ -36,30 +40,55 @@ const LoginPage = () => {
     onAuthStateChanged(auth, (data) => {
       dispatch(AddUser(data));
       setUser(data);
-      console.log(user);
     });
   }, []);
+
+  const data = useSelector((state) => {
+    return state.userData.user;
+  });
+  const q = query(collection(db, "User"), orderBy("createdAt", "asc"));
+
+  useEffect(() => {
+    const a = onSnapshot(q, (snapshot) => {
+      const data1 = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const filteredData = data1?.filter((item) => item?.uid === data?.uid);
+      setVal2([filteredData]);
+    });
+
+    return () => {
+      a();
+    };
+  }, []);
+
   const auth = getAuth(app);
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider).then(async (res) => {
-      const user = res.user;
-      const q1 = query(collection(db, "User"), where("uid", "==", user?.uid));
-      const querysnap = await getDocs(q1);
-      try {
+    signInWithPopup(auth, provider)
+      .then(async (res) => {
+        const user = res?.user;
+        const q1 = query(collection(db, "User"), where("uid", "==", user?.uid));
+        const querysnap = await getDocs(q1);
+
         if (querysnap.empty) {
           await addDoc(collection(db, "User"), {
             name: user?.displayName,
             uid: user?.uid,
-            url: user?.photoURL,
+            url: user?.photoURL,  
+            flag:true,
             createdAt: serverTimestamp(),
           });
+        } else if(!querysnap.empty) {
+          const ref = doc(db, "User", val2[0][0]?.id);
+           await updateDoc(ref, {
+            flag: true,
+          });
         }
-      } catch (err) {
-        console.log("already exits");
-      }
-    });
+      })
+      .catch((err) => alert(err));
   };
 
   return (

@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+const init={
+  isLogin: false,
+  phoneNumber: null,
+  submittedDetails: [],
+  templates: null,
+  Draft: [],
+}
 const ResumeSlice = createSlice({
   name: "ResumeData",
-  initialState: {
-    isLogin: false,
-    phoneNumber: null,
-    submittedDetails: [],
-    templates: null,
-    Draft: [],
-  },
-
+  initialState: init,
   reducers: {
     addTemplate: (state, action) => {
       state.templates = action.payload;

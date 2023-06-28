@@ -11,7 +11,7 @@ const Three = ({ details }) => {
     skill,
     social,
     image,
-    PhoneNumber,
+    phoneNumber,
   } = details;
 
   return (
@@ -31,7 +31,7 @@ const Three = ({ details }) => {
           <h1>Address</h1>
           <h5>{address}</h5>
           <h1>Phone Number</h1>
-          <h5>{PhoneNumber}</h5>
+          <h5>{phoneNumber}</h5>
           <h1>Social Link</h1>
           <h5>{social}</h5>
 

@@ -122,10 +122,23 @@ const Resume = () => {
     };
 
     dispatch(setDraft(draftData));
+    setAddress("");
+    setDesignation("");
+    setExp("");
+    setName("");
+    setObjective("");
+    setProject("");
+    setSkill("");
+    setSocial("");
+    setImage(null);
+    setPhoneNumber("");
+    setPhoneNumberError("");
+    setErr("");
     setIsDraftPopupOpen(false);
     console.log(draftData);
   };
   const handleCardClick = (cardData) => {
+    // console.log("dat :" + cardData.name);
     setSelectedTemplate(cardData.template);
     setName(cardData.name);
     setAddress(cardData.address);
@@ -224,7 +237,6 @@ const Resume = () => {
         ></textarea>
 
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          {" "}
           <button onClick={() => navigate("/Add")}>Back</button>
           <button onClick={submit}>Submit</button>
           <button onClick={reset}>Reset</button>
@@ -300,13 +312,22 @@ const Resume = () => {
               }}
             />
           )}
-       <div>   <button onClick={() => setPreviewMode(false)}>Edit</button>
-          <button onClick={() => handleTemplateChange(1)}>Resume1</button>
-          <button onClick={() => handleTemplateChange(2)}>Resume2</button>
-          <button onClick={() => handleTemplateChange(3)}>Resume3</button></div>
+          <div>
+            {" "}
+            <button onClick={() => setPreviewMode(false)}>Edit</button>
+            <button onClick={() => handleTemplateChange(1)}>Resume1</button>
+            <button onClick={() => handleTemplateChange(2)}>Resume2</button>
+            <button onClick={() => handleTemplateChange(3)}>Resume3</button>
+          </div>
         </div>
       )}
-      {allDraft && <AllDrafts setAllDraft={setAllDraft} allDraft={allDraft}  handleCardClick={handleCardClick}/>}
+      {allDraft && (
+        <AllDrafts
+          setAllDraft={setAllDraft}
+          allDraft={allDraft}
+          handleCardClick={handleCardClick}
+        />
+      )}
       {isDraftPopupOpen && (
         <DraftPopup
           drafts={drafts}

@@ -60,7 +60,7 @@ const User = () => {
                 padding={isActive ? "10px" : ""}
                 name={user?.name}
                 url={user?.url}
-                time={isActive ? "Now" : user.time}
+                time={user?.flag? "🟢":"❤️"}
                 text={"hello"}
               />
             </div>

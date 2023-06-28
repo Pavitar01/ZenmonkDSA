@@ -29,6 +29,7 @@ const Login = () => {
           <h1>Login</h1>
           <img src="https://img.freepik.com/free-photo/blue-user-icon-symbol-website-admin-social-login-element-concept-white-background-3d-rendering_56104-1217.jpg?w=1480&t=st=1687417199~exp=1687417799~hmac=0c9fd6c91f982f1c250ae81bf7bc61b519387a09f4e6e64a887502ba014ad086" />
           <input
+          
             type="number"
             placeholder="Phone number"
             value={ph}
@@ -40,7 +41,7 @@ const Login = () => {
           <p style={{ width: "100%", textAlign: "center", color: "red" }}>
             {err}
           </p>
-          <Link to={val} onClick={handleChange}>  <button>
+          <Link to={val} onClick={handleChange}> <button>
           
               Send Otp
           </button>

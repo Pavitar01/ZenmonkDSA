@@ -11,7 +11,7 @@ const Signup = () => {
  const auth =getAuth(app)
   const SignUp = async () => {
     if (email === "" || pass === "" || cpass === "") {
-      setErr("Please Fill the Fld");
+      setErr("Please Fill the Feild");
     } else if (pass !== cpass) {
       setErr("Both Pass Should Match");
     } else {
@@ -50,7 +50,7 @@ const Signup = () => {
         />
         <button onClick={() => SignUp()}>Signup</button>
       </div>
-      <p>{err}</p>
+      <p style={{color:"red",width:"100%",textAlign:"center"}}>{err}</p>
     </div>
   );
 };

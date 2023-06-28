@@ -14,9 +14,8 @@ import {
   onSnapshot,
   query,
   orderBy,
-  where,
-  getDoc,
-  getDocs,
+  setDoc,
+  doc,
 } from "firebase/firestore"; //firstore
 import { app } from "../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +28,7 @@ const Home = () => {
   const [startcConvo, setStartConvo] = useState(false);
   const [searchText, setSearchText] = useState(""); // New state variable for search text
   const [filteredChats, setFilteredChats] = useState([]); // New state variable for filtered chats
+  const [isTyping, setIsTyping] = useState(false)
   const data = useSelector((state) => {
     return state.userData.user;
   });
@@ -41,6 +41,7 @@ const Home = () => {
 
   const q = query(collection(db, "Chat"), orderBy("createdAt", "asc"));
   const handleOnEnter = async (text) => {
+   if(text!==""){
     try {
       await addDoc(collection(db, "Chat"), {
         RoomId: RoomId,
@@ -51,10 +52,11 @@ const Home = () => {
     } catch (err) {
       alert(err);
     }
+   }
   };
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q , (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -72,6 +74,47 @@ const Home = () => {
     };
   }, [RoomId, searchText]);
 
+
+  const handleInputChange = (e) => {
+    setText(e);
+
+    updateTypingStatus(e !== "");
+  };
+  const roomId=useSelector((state)=>{
+    return state.userData.roomId
+  })
+
+  const updateTypingStatus = async (isTyping) => {
+    try {
+      await setDoc(doc(db, "TypingStatus", RoomId), {
+        isTyping: isTyping,
+        userId: data.uid,
+        roomId:roomId,
+      });
+    } catch (err) {
+      console.error("Error updating typing status:", err);
+    }
+  };
+
+  useEffect(() => {
+    const typingStatusRef = doc(db, "TypingStatus", RoomId);
+    const b = onSnapshot(typingStatusRef, (docSnapshot) => {
+      const typingStatus = docSnapshot.data();
+      if (typingStatus && typingStatus.userId !== data.uid) {
+        setIsTyping(typingStatus.isTyping);
+      }
+    });
+
+    return () => {
+      b();
+    };
+  }, [RoomId]);
+
+
+
+
+
+
   const handleSearch = () => {
     const filteredChats = chats.filter((item) =>
       item.message.toLowerCase().includes(searchText.toLowerCase())
@@ -80,17 +123,21 @@ const Home = () => {
   };
 
   const submit = async () => {
+   if(text!==""){
     try {
       await addDoc(collection(db, "Chat"), {
         RoomId: RoomId,
         sId: data.uid,
         message: text,
-        url: data.photoURL,
         createdAt: serverTimestamp(),
       });
     } catch (err) {
       alert(err);
     }
+   }
+    setText("");
+
+
   };
 
   return (
@@ -134,6 +181,7 @@ const Home = () => {
             {toggle ? <Details /> : <></>}
           </div>
           <div className="messages">
+          {isTyping && <span>Other user is typing...</span>} 
             {startcConvo ? (
               filteredChats.map((item) => (
                 <Message
@@ -152,15 +200,18 @@ const Home = () => {
             )}
           </div>
           <div className="messageFeild">
-            <div className="bg">
-              <InputEmoji
-                className="inputBox"
+            <div className="bg" style={{border:"1px solid purple"}}>
+             <input type="text"
+            
+             style={{width:"100%",height:"100%",border:"none",outline:"none"}}
+              className="inputBox"
                 value={text}
-                onChange={setText}
+                onChange={(e)=>{
+                  handleInputChange(e.target.value)
+                }}
                 cleanOnEnter
                 onEnter={handleOnEnter}
-                placeholder="Type a message"
-              />
+                placeholder="Type a message"/>
             </div>
             <button className="button" onClick={submit} disabled={!startcConvo}>
               Send
